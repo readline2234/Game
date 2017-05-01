@@ -1,3 +1,7 @@
+#include "Vec3.h"
+#include <iostream>
+#include "stdafx.h"
+
 // Deklaracje funkcji u¿ywanych jako obs³uga zdarzeñ GLUT-a.
 void OnRender();
 void OnReshape(int, int);
@@ -12,6 +16,8 @@ void OnTimer(int);
 struct vec3 {
 	float x, y, z;
 };
+
+
 
 struct SCameraState {
 	vec3 pos;

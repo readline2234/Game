@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 	glutInitWindowSize(640, 360);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
-	glutCreateWindow("GKiW: Lab 3");
+	glutCreateWindow("GAME");
 
 	glutDisplayFunc(OnRender);
 	glutReshapeFunc(OnReshape);
@@ -266,6 +266,10 @@ void OnRender() {
 
 	#pragma endregion
 	
+		//Vec3 * wektor = new Vec3(0,0,0);
+		//std::cout << *wektor << std::endl;
+
+
 	glutSwapBuffers();
 	glFlush();
 	glutPostRedisplay();
