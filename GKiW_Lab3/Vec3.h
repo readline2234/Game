@@ -9,7 +9,6 @@ private:
 public:
 	Vec3();
 	Vec3(float x, float y, float z);
-	//Vec3(&Vec3);	//konstruktor kopijacy
 	void SetX(float x);
 	void SetY(float y);
 	void SetZ(float z);
@@ -19,9 +18,7 @@ public:
 	float GetZ();
 	Vec3 GetXYZ();
 
-	//friend std::ostream & operator << (std::ostream &wyjscie, const vec3 &s)
-	//{
-	//	return wyjscie << "x: " << vec3.x << "y: " << vec3.y << "z: " >> vec3.z << endl;
-	//}
-
+	friend std::ostream & operator << (std::ostream &wyjscie, const Vec3 &s);
 };
+
+//TODO: Vec3(&Vec3);	//konstruktor kopiujacy????

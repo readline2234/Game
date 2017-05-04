@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GKiW_Lab3.h"
+#include "Vec3.h"
 
 int main(int argc, char* argv[])
 {
@@ -38,6 +39,12 @@ int main(int argc, char* argv[])
 	player.dir.z = -1.0f;
 
 	player.speed = 1.50f;
+
+
+	Vec3 * wektor = new Vec3(1, 2, 3);
+	std::cout << *wektor << std::endl;
+
+
 
 	glutMainLoop();
 
@@ -266,9 +273,6 @@ void OnRender() {
 
 	#pragma endregion
 	
-		//Vec3 * wektor = new Vec3(0,0,0);
-		//std::cout << *wektor << std::endl;
-
 
 	glutSwapBuffers();
 	glFlush();
