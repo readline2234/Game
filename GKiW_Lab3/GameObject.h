@@ -1,21 +1,24 @@
 #pragma once
+#include "stdafx.h"
+#include "Vec3.h"
+
 class GameObject {
 private:
-	float PosX;
-	float PosY;
-	float PosZ;
+	Vec3 * pos;
+	Vec3 * rot;
+	Vec3 * scale;
 public:
 	GameObject();
-	//GameObject(vec3 vector);
 	GameObject(float x, float y, float z);
+	GameObject(Vec3 vector);
 	void SetPosX(float x);
 	void SetPosY(float y);
 	void SetPosZ(float z);
-	void SetPos(float x, float y, float z);
+	void SetPosXYZ(float x, float y, float z);
 	float GetPosX();
 	float GetPosY();
 	float GetPosZ();
-	//vec3 GetPos();
+	Vec3 GetPosXYZ();
 	void Scale();
 	void Rotate();
 	void Draw();

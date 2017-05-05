@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "GKiW_Lab3.h"
 #include "Vec3.h"
+#include "GameObject.h"
+
+Vec3 * wektor = new Vec3(0, 0, 0);
+//std::cout << *wektor << std::endl;
+//GameObject * obiekt = new GameObject(0, 0, 0);
+GameObject * obiekt = new GameObject(*wektor);
 
 int main(int argc, char* argv[])
 {
@@ -41,8 +47,8 @@ int main(int argc, char* argv[])
 	player.speed = 1.50f;
 
 
-	Vec3 * wektor = new Vec3(1, 2, 3);
-	std::cout << *wektor << std::endl;
+
+
 
 
 
@@ -185,6 +191,8 @@ void OnRender() {
 		glLightfv(GL_LIGHT0, GL_POSITION, l0_pos);
 
 	#pragma endregion
+
+	obiekt->Draw();
 
 	#pragma region Szescian
 	

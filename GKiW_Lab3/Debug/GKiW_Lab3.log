@@ -1,17 +1,10 @@
-﻿  Vec3.cpp
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(14): error C2065: 'X': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(18): error C2065: 'Y': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(22): error C2065: 'Z': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(26): error C2065: 'X': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(26): error C2065: 'Y': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(26): error C2065: 'Z': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(30): error C2065: 'X': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(34): error C2065: 'Y': undeclared identifier
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\vec3.cpp(38): error C2065: 'Z': undeclared identifier
-  Generating Code...
-  Compiling...
-  GKiW_Lab3.cpp
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(141): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(142): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(201): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-  Generating Code...
+﻿  GKiW_Lab3.cpp
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(146): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(147): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(209): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+GKiW_Lab3.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+  GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.exe
+  GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.pdb (Full PDB)
+  G:\dokumenty\! studia\Sem 4\gk\! GAME\freeglut\bin\freeglut.dll
+          1 file(s) copied.

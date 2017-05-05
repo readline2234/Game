@@ -9,40 +9,34 @@ Vec3::Vec3(float x, float y, float z)
 {
 	X = x;	Y = y; Z = z;
 }
-void SetX(float x)
+void Vec3::SetX(float x)
 {
 	X = x;
 }
-void SetY(float y)
+void Vec3::SetY(float y)
 {
 	Y = y;
 }
-void SetZ(float z)
+void Vec3::SetZ(float z)
 {
 	Z = z;
 }
-void SetXYZ(float x, float y, float z)
+void Vec3::SetXYZ(float x, float y, float z)
 {
-	X = x;	Y = y; Z = z;
+	X = x; Y = y; Z = z;
 }
-float GetX()
+float Vec3::GetX()
 {
 	return X;
 }
-float GetY()
+float Vec3::GetY()
 {
 	return Y;
 }
-float GetZ()
+float Vec3::GetZ()
 {
 	return Z;
 }
-Vec3 GetXYZ()
-{
-	// dopisac metode, poprawic to co wyzej
-}
-
-
 std::ostream & operator << (std::ostream &wyjscie, const Vec3 &v)
 {
 	return wyjscie << std::endl << "X: " << v.X << "\tY: " << v.Y << "\tZ: " << v.Z << std::endl;

@@ -16,7 +16,7 @@ public:
 	float GetX();
 	float GetY();
 	float GetZ();
-	Vec3 GetXYZ();
+	//Vec3 GetXYZ();
 
 	friend std::ostream & operator << (std::ostream &wyjscie, const Vec3 &s);
 };
