@@ -6,19 +6,26 @@ class GameObject {
 private:
 	Vec3 * pos;
 	Vec3 * rot;
-	Vec3 * scale;
+	Vec3 * scal;
+
 public:
 	GameObject();
 	GameObject(float x, float y, float z);
 	GameObject(Vec3 vector);
+
 	void SetPosX(float x);
 	void SetPosY(float y);
 	void SetPosZ(float z);
 	void SetPosXYZ(float x, float y, float z);
+	void SetPosXYZ(Vec3 vector);
 	float GetPosX();
 	float GetPosY();
 	float GetPosZ();
 	Vec3 GetPosXYZ();
+
+	void SetRot(float x, float y, float z);
+	void SetRot(Vec3 vector);
+
 	void Scale();
 	void Rotate();
 	void Draw();

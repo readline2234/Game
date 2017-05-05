@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameObject.h"
+#include <iostream>
 
 GameObject::GameObject()
 {
@@ -7,13 +8,16 @@ GameObject::GameObject()
 }
 GameObject::GameObject(float x, float y, float z)
 {
-	pos = new Vec3;
-	pos->SetXYZ(x, y, z);
+	pos = new Vec3(x, y, z);
+	rot = new Vec3(0, 0, 0);
+	scal = new Vec3(1, 1, 1);
 }
 GameObject::GameObject(Vec3 vector)
 {
 	pos = new Vec3;
 	*pos = vector;		//moze byc blad
+	rot = new Vec3(0, 0, 0);
+	scal = new Vec3(1, 1, 1);
 }
 void GameObject::SetPosX(float x)
 {
@@ -31,6 +35,10 @@ void GameObject::SetPosXYZ(float x, float y, float z)
 {
 	pos->SetXYZ(x, y, z);
 }
+void GameObject::SetPosXYZ(Vec3 vector)
+{
+	* pos = vector;
+}
 float GameObject::GetPosX()
 {
 	return pos->GetX();
@@ -47,7 +55,16 @@ Vec3 GameObject::GetPosXYZ()
 {
 	return * pos;
 }	
-//sprawdzic to
+
+void GameObject::SetRot(float x, float y, float z)
+{
+	rot->SetXYZ(x, y, z);
+}
+void GameObject::SetRot(Vec3 vector)
+{
+	rot->SetXYZ(vector.GetX(), vector.GetY(), vector.GetZ());
+}
+
 void GameObject::Scale()
 {
 
@@ -59,6 +76,10 @@ void GameObject::Rotate()
 void GameObject::Draw()
 {
 	glPushMatrix();
+
+		glRotatef(rot->GetX(), 1.0f, 0.0f, 0.0f);
+		glRotatef(rot->GetY(), 0.0f, 1.0f, 0.0f);
+		glRotatef(rot->GetZ(), 0.0f, 0.0f, 1.0f);
 		glutSolidCube(1.0f);
 	glPopMatrix();
 }
