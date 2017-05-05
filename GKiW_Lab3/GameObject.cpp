@@ -65,21 +65,25 @@ void GameObject::SetRot(Vec3 vector)
 	rot->SetXYZ(vector.GetX(), vector.GetY(), vector.GetZ());
 }
 
-void GameObject::Scale()
+void GameObject::SetScal(float x, float y, float z)
 {
-
+	scal->SetXYZ(x, y, z);
 }
-void GameObject::Rotate()
+void GameObject::SetScal(Vec3 vector)
 {
-
+	scal->SetXYZ(vector.GetX(), vector.GetY(), vector.GetZ());
 }
+
+
 void GameObject::Draw()
 {
 	glPushMatrix();
 
+		
 		glRotatef(rot->GetX(), 1.0f, 0.0f, 0.0f);
 		glRotatef(rot->GetY(), 0.0f, 1.0f, 0.0f);
 		glRotatef(rot->GetZ(), 0.0f, 0.0f, 1.0f);
+		glScalef(scal->GetX(), scal->GetY(), scal->GetZ());
 		glutSolidCube(1.0f);
 	glPopMatrix();
 }

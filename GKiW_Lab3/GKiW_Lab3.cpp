@@ -192,7 +192,8 @@ void OnRender() {
 
 	#pragma endregion
 
-	obiekt->SetRot(45, 45, 45);
+	obiekt->SetScal(1, 1, 5);
+	obiekt->SetRot(T / 100, T / 100, T / 100);
 	obiekt->Draw();
 
 	#pragma region Szescian

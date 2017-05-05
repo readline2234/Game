@@ -26,6 +26,9 @@ public:
 	void SetRot(float x, float y, float z);
 	void SetRot(Vec3 vector);
 
+	void SetScal(float x, float y, float z);
+	void SetScal(Vec3 vector);
+
 	void Scale();
 	void Rotate();
 	void Draw();
