@@ -2,6 +2,7 @@
 #include "GKiW_Lab3.h"
 #include "Vec3.h"
 #include "GameObject.h"
+#include "Model.h"
 
 Vec3 * wektor = new Vec3(0, 0, 0);
 //std::cout << *wektor << std::endl;
@@ -49,7 +50,7 @@ int main(int argc, char* argv[])
 
 
 
-
+	Model * mod = new Model("models\\cb.obj");
 
 
 	glutMainLoop();
