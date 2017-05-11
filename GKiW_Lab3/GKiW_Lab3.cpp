@@ -8,6 +8,7 @@ Vec3 * wektor = new Vec3(0, 0, 0);
 //std::cout << *wektor << std::endl;
 //GameObject * obiekt = new GameObject(0, 0, 0);
 GameObject * obiekt = new GameObject(*wektor);
+Model * mod = new Model("models\\cb4.obj");
 
 int main(int argc, char* argv[])
 {
@@ -50,7 +51,10 @@ int main(int argc, char* argv[])
 
 
 
-	Model * mod = new Model("models\\cb.obj");
+	
+	
+	
+
 
 
 	glutMainLoop();
@@ -195,7 +199,9 @@ void OnRender() {
 
 	obiekt->SetScal(1, 1, 5);
 	obiekt->SetRot(T / 100, T / 100, T / 100);
-	obiekt->Draw();
+	//obiekt->Draw();
+
+	mod->Draw();
 
 	#pragma region Szescian
 	
