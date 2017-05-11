@@ -1,12 +1,15 @@
 #pragma once
 #include "stdafx.h"
 #include "Vec3.h"
+#include "Model.h"
 
 class GameObject {
 private:
 	Vec3 * pos;
 	Vec3 * rot;
 	Vec3 * scal;
+
+	Model * model;
 
 public:
 	GameObject();
@@ -32,4 +35,7 @@ public:
 	void Scale();
 	void Rotate();
 	void Draw();
+
+	void LoadModel(char * fp);
+	void DrawModel();
 };

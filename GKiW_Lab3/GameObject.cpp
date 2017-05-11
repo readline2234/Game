@@ -74,7 +74,6 @@ void GameObject::SetScal(Vec3 vector)
 	scal->SetXYZ(vector.GetX(), vector.GetY(), vector.GetZ());
 }
 
-
 void GameObject::Draw()
 {
 	glPushMatrix();
@@ -86,4 +85,13 @@ void GameObject::Draw()
 		glScalef(scal->GetX(), scal->GetY(), scal->GetZ());
 		glutSolidCube(1.0f);
 	glPopMatrix();
+}
+
+void GameObject::LoadModel(char * fp)
+{
+	model = new Model(fp);
+}
+void GameObject::DrawModel()
+{
+	model->Draw();
 }

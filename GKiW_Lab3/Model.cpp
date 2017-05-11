@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <iostream>
 #include "Model.h"
 
 Model::Model(char * fp)
@@ -7,6 +8,7 @@ Model::Model(char * fp)
 	if (file == NULL)
 	{
 		printf("Impossible to open the file !\n");
+		std::cin >> fp;
 		exit(1);
 	}
 
@@ -43,7 +45,7 @@ Model::Model(char * fp)
 			int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &vertexIndex[0], &uvIndex[0], &normalIndex[0], &vertexIndex[1], &uvIndex[1], &normalIndex[1], &vertexIndex[2], &uvIndex[2], &normalIndex[2]);
 			if (matches != 9) {
 				printf("File can't be read by our simple parser : ( Try exporting with other options\n");
-				cin >> vertex1;
+				std::cin >> fp;
 				exit(1);
 			}
 			vertexIndices.push_back(vertexIndex[0]);

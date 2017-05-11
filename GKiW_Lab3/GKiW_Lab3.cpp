@@ -10,6 +10,9 @@ Vec3 * wektor = new Vec3(0, 0, 0);
 GameObject * obiekt = new GameObject(*wektor);
 Model * mod = new Model("models\\cb4.obj");
 
+GameObject * obiekt2 = new GameObject(*wektor);
+
+
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -48,7 +51,7 @@ int main(int argc, char* argv[])
 
 	player.speed = 1.50f;
 
-
+	obiekt2->LoadModel("models\\cb4.obj");
 
 
 	
@@ -200,8 +203,11 @@ void OnRender() {
 	obiekt->SetScal(1, 1, 5);
 	obiekt->SetRot(T / 100, T / 100, T / 100);
 	//obiekt->Draw();
+	//mod->Draw();
 
-	mod->Draw();
+	
+	obiekt2->DrawModel();
+	//obiekt2->Draw();
 
 	#pragma region Szescian
 	

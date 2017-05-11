@@ -1,8 +1,8 @@
 ﻿  GKiW_Lab3.cpp
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(152): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(153): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(201): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(218): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(155): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(156): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(204): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(224): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
 GKiW_Lab3.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.exe
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.pdb (Full PDB)
