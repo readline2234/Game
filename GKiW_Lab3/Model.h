@@ -5,6 +5,7 @@
 #include <vector>
 #include "Vec3.h"
 #include "glm\glm\glm.hpp"
+#include "Texture.h"
 
 using namespace std;
 
@@ -25,7 +26,9 @@ private:
 	std::vector < glm::vec2 > out_uvs;
 	std::vector < glm::vec3 > out_normals;
 
+	GLuint textureID;
+
 public:
-	Model(char * fp);
+	Model(char * fp, char * ip);
 	void Draw();
 };

@@ -8,7 +8,7 @@ Vec3 * wektor = new Vec3(0, 0, 0);
 //std::cout << *wektor << std::endl;
 //GameObject * obiekt = new GameObject(0, 0, 0);
 GameObject * obiekt = new GameObject(*wektor);
-Model * mod = new Model("models\\cb4.obj");
+//Model * mod = new Model("models\\cb4.obj");
 
 GameObject * obiekt2 = new GameObject(*wektor);
 
@@ -51,8 +51,8 @@ int main(int argc, char* argv[])
 
 	player.speed = 1.50f;
 
-	obiekt2->LoadModel("models\\cb4.obj");
-
+	//obiekt2->LoadModel("models\\test.obj","models\\test.bmp");
+	obiekt2->LoadModel("models\\asw.obj", "models\\asw.bmp");
 
 	
 	

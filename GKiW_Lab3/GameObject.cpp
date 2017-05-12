@@ -87,11 +87,12 @@ void GameObject::Draw()
 	glPopMatrix();
 }
 
-void GameObject::LoadModel(char * fp)
+void GameObject::LoadModel(char * fp,char *ip)
 {
-	model = new Model(fp);
+	model = new Model(fp,ip);
 }
 void GameObject::DrawModel()
 {
 	model->Draw();
 }
+

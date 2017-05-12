@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Model.h"
 
-Model::Model(char * fp)
+Model::Model(char * fp, char *ip)
 {
 	FILE * file = fopen(fp, "r");
 	if (file == NULL)
@@ -81,10 +81,7 @@ Model::Model(char * fp)
 		out_normals.push_back(normal);
 	}
 
-
-
-	
-
+	textureID = Texture::loadBMP_custom(ip);
 
 }
 
@@ -102,16 +99,37 @@ void Model::Draw()
 
 	glFrontFace(GL_CW);
 
+
+	
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	glEnable(GL_TEXTURE_2D);	//test
+	
 	glBegin(GL_TRIANGLES);
 
 	for (unsigned int i = 0; i < vertexIndices.size(); i++) {
 		//unsigned int vIndex = vertexIndices[i];
 		//unsigned int nIndex = normalIndices[i];
+		//unsigned int uIndex = uvIndices[i];
 
 		glm::vec3 vec;
+		glm::vec2 vec2;
+
+
+
+		vec2 = out_uvs[i];
+		glTexCoord2f(vec2.x, vec2.y);
+
+		vec = out_normals[i];
+		glNormal3f(vec.x, vec.y, vec.z);
 
 		vec = out_vertices[i];
 		glVertex3f(vec.x, vec.y, vec.z);
 	}
+	
 	glEnd();
+
+	
+
+	glDisable(GL_TEXTURE_2D);
 }

@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Vec3.h"
 #include "Model.h"
+#include "Texture.h"
 
 class GameObject {
 private:
@@ -36,6 +37,6 @@ public:
 	void Rotate();
 	void Draw();
 
-	void LoadModel(char * fp);
+	void LoadModel(char * fp,char *ip);
 	void DrawModel();
 };
