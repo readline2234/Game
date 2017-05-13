@@ -4,14 +4,15 @@
 #include "GameObject.h"
 #include "Model.h"
 
-Vec3 * wektor = new Vec3(0, 0, 0);
+Vec3 * wektor = new Vec3(-3, 0, 0);
+Vec3 * wektor2 = new Vec3(0, 0, 0);
 //std::cout << *wektor << std::endl;
 //GameObject * obiekt = new GameObject(0, 0, 0);
 GameObject * obiekt = new GameObject(*wektor);
 //Model * mod = new Model("models\\cb4.obj");
 
 GameObject * obiekt2 = new GameObject(*wektor);
-GameObject * obiekt3 = new GameObject(*wektor);
+GameObject * obiekt3 = new GameObject(*wektor2);
 
 
 int main(int argc, char* argv[])
@@ -54,7 +55,7 @@ int main(int argc, char* argv[])
 
 	//obiekt2->LoadModel("models\\test.obj","models\\test.bmp");
 	obiekt2->LoadModel("models\\asw.obj", "models\\asw.bmp");
-	obiekt2->LoadModel("models\\poly.obj", "models\\poly3.bmp");
+	obiekt3->LoadModel("models\\poly.obj", "models\\poly3.bmp");
 	
 	
 	
@@ -188,27 +189,31 @@ void OnRender() {
 		0.0f, 1.0f, 0.0f
 	);
 
-	#pragma region Swiatlo
+#pragma region Swiatlo
 
-		float l0_amb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-		float l0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float l0_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float l0_pos[] = { LightPos.x, LightPos.y, LightPos.z, 1.0f };
-		glLightfv(GL_LIGHT0, GL_AMBIENT, l0_amb);
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, l0_dif);
-		glLightfv(GL_LIGHT0, GL_SPECULAR, l0_spe);
-		glLightfv(GL_LIGHT0, GL_POSITION, l0_pos);
+	float l0_amb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+	float l0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float l0_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float l0_pos[] = { LightPos.x, LightPos.y, LightPos.z, 1.0f };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, l0_amb);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, l0_dif);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, l0_spe);
+	glLightfv(GL_LIGHT0, GL_POSITION, l0_pos);
 
-	#pragma endregion
+#pragma endregion
 
 	obiekt->SetScal(1, 1, 5);
 	obiekt->SetRot(T / 100, T / 100, T / 100);
 	//obiekt->Draw();
 	//mod->Draw();
-
-	
+	obiekt2->SetScal(3, 2, 4);
+	obiekt2->SetRot(45, 33, 11);
 	obiekt2->DrawModel();
-	//obiekt2->Draw();
+
+	obiekt3->SetPosXYZ(3, 0, 0);
+	obiekt3->SetRot(45, 45, 0);
+	obiekt3->DrawModel();
+
 
 	#pragma region Szescian
 	

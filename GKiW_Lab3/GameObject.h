@@ -6,9 +6,9 @@
 
 class GameObject {
 private:
-	Vec3 * pos;
-	Vec3 * rot;
-	Vec3 * scal;
+	Vec3 * pos=0;
+	Vec3 * rot=0;
+	Vec3 * scal=0;
 
 	Model * model;
 

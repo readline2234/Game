@@ -85,11 +85,15 @@ Model::Model(char * fp, char *ip)
 
 }
 
-void Model::Draw()
+void Model::Draw(Vec3  pos, Vec3  rot, Vec3  scal)
 {
 	glPushMatrix();
-
-	//scale, rotate, translation
+	glTranslatef(pos.GetX(), pos.GetY(), pos.GetZ());
+	glRotatef(rot.GetX(), 1.0f, 0.0f, 0.0f);
+	glRotatef(rot.GetY(), 0.0f, 1.0f, 0.0f);
+	glRotatef(rot.GetZ(), 0.0f, 0.0f, 1.0f);
+	glScalef(scal.GetX(), scal.GetY(), scal.GetZ());
+	//scale, rotate, translation HERE
 
 	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -131,7 +135,7 @@ void Model::Draw()
 	
 	glEnd();
 
-	
+	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
 }

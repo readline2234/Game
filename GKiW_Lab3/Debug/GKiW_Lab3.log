@@ -1,23 +1,8 @@
-﻿  Model.cpp
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(7): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(19): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(26): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(32): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(38): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\model.cpp(45): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-  GameObject.cpp
-  GKiW_Lab3.cpp
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(156): warning C4305: '/=': truncation from 'double' to 'float'
+﻿  GKiW_Lab3.cpp
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(157): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(205): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(225): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
-  Generating Code...
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(158): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(206): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(230): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
 GKiW_Lab3.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.exe
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.pdb (Full PDB)

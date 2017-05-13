@@ -94,7 +94,6 @@ void GameObject::LoadModel(char * fp,char *ip)
 void GameObject::DrawModel()
 {
 
-
-	model->Draw();
+	model->Draw(*pos,*rot,*scal);
 }
 
