@@ -11,6 +11,7 @@ GameObject * obiekt = new GameObject(*wektor);
 //Model * mod = new Model("models\\cb4.obj");
 
 GameObject * obiekt2 = new GameObject(*wektor);
+GameObject * obiekt3 = new GameObject(*wektor);
 
 
 int main(int argc, char* argv[])
@@ -53,7 +54,7 @@ int main(int argc, char* argv[])
 
 	//obiekt2->LoadModel("models\\test.obj","models\\test.bmp");
 	obiekt2->LoadModel("models\\asw.obj", "models\\asw.bmp");
-
+	obiekt2->LoadModel("models\\poly.obj", "models\\poly3.bmp");
 	
 	
 	

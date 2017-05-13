@@ -89,6 +89,8 @@ void Model::Draw()
 {
 	glPushMatrix();
 
+	//scale, rotate, translation
+
 	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };

@@ -31,4 +31,6 @@ private:
 public:
 	Model(char * fp, char * ip);
 	void Draw();
+
+	// Vec3 pos, Vec3 rot, Vec3 scal)
 };
