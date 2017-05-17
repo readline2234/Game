@@ -14,7 +14,6 @@ GameObject * obiekt = new GameObject(*wektor);
 GameObject * obiekt2 = new GameObject(*wektor);
 GameObject * obiekt3 = new GameObject(*wektor2);
 
-
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -211,7 +210,7 @@ void OnRender() {
 	obiekt2->DrawModel();
 
 	obiekt3->SetPosXYZ(3, 0, 0);
-	obiekt3->SetRot(45, 45, 0);
+	//obiekt3->SetRot(45, 45, 0);
 	obiekt3->DrawModel();
 
 

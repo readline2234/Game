@@ -6,9 +6,9 @@
 
 class GameObject {
 private:
-	Vec3 * pos=0;
-	Vec3 * rot=0;
-	Vec3 * scal=0;
+	Vec3 * pos;
+	Vec3 * rot;
+	Vec3 * scal;
 
 	Model * model;
 
@@ -32,10 +32,6 @@ public:
 
 	void SetScal(float x, float y, float z);
 	void SetScal(Vec3 vector);
-
-	void Scale();
-	void Rotate();
-	void Draw();
 
 	void LoadModel(char * fp,char *ip);
 	void DrawModel();

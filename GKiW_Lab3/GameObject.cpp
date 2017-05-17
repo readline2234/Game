@@ -73,27 +73,12 @@ void GameObject::SetScal(Vec3 vector)
 {
 	scal->SetXYZ(vector.GetX(), vector.GetY(), vector.GetZ());
 }
-
-void GameObject::Draw()
-{
-	glPushMatrix();
-
-		
-		glRotatef(rot->GetX(), 1.0f, 0.0f, 0.0f);
-		glRotatef(rot->GetY(), 0.0f, 1.0f, 0.0f);
-		glRotatef(rot->GetZ(), 0.0f, 0.0f, 1.0f);
-		glScalef(scal->GetX(), scal->GetY(), scal->GetZ());
-		glutSolidCube(1.0f);
-	glPopMatrix();
-}
-
 void GameObject::LoadModel(char * fp,char *ip)
 {
 	model = new Model(fp,ip);
 }
 void GameObject::DrawModel()
 {
-
 	model->Draw(*pos,*rot,*scal);
 }
 

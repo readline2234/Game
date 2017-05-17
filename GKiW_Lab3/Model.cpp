@@ -88,12 +88,12 @@ Model::Model(char * fp, char *ip)
 void Model::Draw(Vec3  pos, Vec3  rot, Vec3  scal)
 {
 	glPushMatrix();
+	
 	glTranslatef(pos.GetX(), pos.GetY(), pos.GetZ());
 	glRotatef(rot.GetX(), 1.0f, 0.0f, 0.0f);
 	glRotatef(rot.GetY(), 0.0f, 1.0f, 0.0f);
 	glRotatef(rot.GetZ(), 0.0f, 0.0f, 1.0f);
 	glScalef(scal.GetX(), scal.GetY(), scal.GetZ());
-	//scale, rotate, translation HERE
 
 	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -105,23 +105,16 @@ void Model::Draw(Vec3  pos, Vec3  rot, Vec3  scal)
 
 	glFrontFace(GL_CW);
 
-
-	
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
-	glEnable(GL_TEXTURE_2D);	//test
+	glEnable(GL_TEXTURE_2D);
 	
 	glBegin(GL_TRIANGLES);
 
 	for (unsigned int i = 0; i < vertexIndices.size(); i++) {
-		//unsigned int vIndex = vertexIndices[i];
-		//unsigned int nIndex = normalIndices[i];
-		//unsigned int uIndex = uvIndices[i];
-
+		
 		glm::vec3 vec;
 		glm::vec2 vec2;
-
-
 
 		vec2 = out_uvs[i];
 		glTexCoord2f(vec2.x, vec2.y);

@@ -11,12 +11,6 @@ using namespace std;
 
 class Model {
 private:
-	int vertices;
-	int positions;
-	int texels;
-	int normals;
-	int faces;
-
 	std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
 	std::vector< glm::vec3 > temp_vertices;
 	std::vector< glm::vec2 > temp_uvs;
