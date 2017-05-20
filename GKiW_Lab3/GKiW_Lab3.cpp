@@ -22,6 +22,8 @@ GameObject * road1 = new GameObject(0, 0, 0);
 GameObject * road2 = new GameObject(0, 0, 0);
 GameObject * finish = new GameObject(0, 0, 0);
 
+GameObject * light = new GameObject(0, 0, 0);
+
 Player * gracz = new Player(0, 0, 0);
 
 GameObject * mix = new GameObject(0, 0, 0);
@@ -34,7 +36,7 @@ int main(int argc, char* argv[])
 	glutInitWindowSize(640, 360);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
-	glutCreateWindow("GAME");
+	glutCreateWindow("BOOSTER");
 
 	glutDisplayFunc(OnRender);
 	glutReshapeFunc(OnReshape);
@@ -69,7 +71,6 @@ int main(int argc, char* argv[])
 	
 	obiekt4->LoadModel("models\\car.obj", "models\\car.bmp");
 	obiekt5->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
-	gracz->LoadModel("models\\enemy1.obj", "models\\enemy1.bmp");
 	mix->LoadModel("models\\merge.obj", "models\\merge2.bmp");
 
 	start->LoadModel("models\\start.obj", "models\\start2.bmp");
@@ -77,6 +78,9 @@ int main(int argc, char* argv[])
 	road2->LoadModel("models\\road.obj", "models\\road3.bmp");
 	finish->LoadModel("models\\finish.obj", "models\\finish3.bmp");
 
+	light->LoadModel("models\\light.obj", "models\\light2.bmp");
+
+	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
 
 
 	glutMainLoop();
@@ -174,6 +178,11 @@ void OnTimer(int id) {
 		player.velM /= 1.2;
 		player.velS /= 1.2;
 
+
+
+
+
+
 	#pragma endregion
 
 	#pragma region Ruch swiatla
@@ -244,6 +253,10 @@ void OnRender() {
 	finish->SetRot(0, 180, 0);
 	finish->SetScal(0.5, 0.5, 0.5);
 	finish->DrawModel();
+	
+	light->SetPosXYZ(0, 1.5, 7.5);
+	light->SetScal(0.5, 0.5, 0.5);
+	light->DrawModel();
 
 	//obiekt4->DrawModel();
 	obiekt5->SetScal(0.5, 0.5, 0.5);
