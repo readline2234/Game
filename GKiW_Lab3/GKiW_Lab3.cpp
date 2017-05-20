@@ -3,6 +3,7 @@
 #include "Vec3.h"
 #include "GameObject.h"
 #include "Model.h"
+#include "Player.h"
 
 Vec3 * wektor = new Vec3(-3, 0, 0);
 Vec3 * wektor2 = new Vec3(0, 0, 0);
@@ -12,7 +13,18 @@ GameObject * obiekt = new GameObject(*wektor);
 //Model * mod = new Model("models\\cb4.obj");
 
 GameObject * obiekt2 = new GameObject(*wektor);
-GameObject * obiekt3 = new GameObject(*wektor2);
+
+GameObject * obiekt4 = new GameObject(0, -3, 0);
+GameObject * obiekt5 = new GameObject(0, 3, 0);
+
+GameObject * start = new GameObject(0, 0, 0);
+GameObject * road1 = new GameObject(0, 0, 0);
+GameObject * road2 = new GameObject(0, 0, 0);
+GameObject * finish = new GameObject(0, 0, 0);
+
+Player * gracz = new Player(0, 0, 0);
+
+GameObject * mix = new GameObject(0, 0, 0);
 
 int main(int argc, char* argv[])
 {
@@ -54,10 +66,16 @@ int main(int argc, char* argv[])
 
 	//obiekt2->LoadModel("models\\test.obj","models\\test.bmp");
 	obiekt2->LoadModel("models\\asw.obj", "models\\asw.bmp");
-	obiekt3->LoadModel("models\\poly.obj", "models\\poly3.bmp");
 	
-	
-	
+	obiekt4->LoadModel("models\\car.obj", "models\\car.bmp");
+	obiekt5->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
+	gracz->LoadModel("models\\enemy1.obj", "models\\enemy1.bmp");
+	mix->LoadModel("models\\merge.obj", "models\\merge2.bmp");
+
+	start->LoadModel("models\\start.obj", "models\\start2.bmp");
+	road1->LoadModel("models\\road.obj", "models\\road3.bmp");
+	road2->LoadModel("models\\road.obj", "models\\road3.bmp");
+	finish->LoadModel("models\\finish.obj", "models\\finish3.bmp");
 
 
 
@@ -209,10 +227,31 @@ void OnRender() {
 	obiekt2->SetRot(45, 33, 11);
 	obiekt2->DrawModel();
 
-	obiekt3->SetPosXYZ(3, 0, 0);
-	//obiekt3->SetRot(45, 45, 0);
-	obiekt3->DrawModel();
 
+	start->SetPosXYZ(0, -1, 0);
+	start->SetScal(0.5, 0.5, 0.5);
+	start->DrawModel();
+
+	road1->SetPosXYZ(0, -1, 19.5);
+	road1->SetScal(0.5, 0.5, 0.5);
+	road1->DrawModel();
+
+	road2->SetPosXYZ(0, -1, 39.1);
+	road2->SetScal(0.5, 0.5, 0.5);
+	road2->DrawModel();
+
+	finish->SetPosXYZ(0, -1, 70.1);
+	finish->SetRot(0, 180, 0);
+	finish->SetScal(0.5, 0.5, 0.5);
+	finish->DrawModel();
+
+	//obiekt4->DrawModel();
+	obiekt5->SetScal(0.5, 0.5, 0.5);
+	obiekt5->SetPosXYZ(0,-1,0);
+	obiekt5->DrawModel();
+	//gracz->SetRot(T, 0, 0);
+
+	gracz->DrawModel();
 
 	#pragma region Szescian
 	

@@ -95,6 +95,8 @@ void Model::Draw(Vec3  pos, Vec3  rot, Vec3  scal)
 	glRotatef(rot.GetZ(), 0.0f, 0.0f, 1.0f);
 	glScalef(scal.GetX(), scal.GetY(), scal.GetZ());
 
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
 	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
