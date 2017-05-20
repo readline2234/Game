@@ -5,18 +5,6 @@
 #include "Model.h"
 #include "Player.h"
 
-Vec3 * wektor = new Vec3(-3, 0, 0);
-Vec3 * wektor2 = new Vec3(0, 0, 0);
-//std::cout << *wektor << std::endl;
-//GameObject * obiekt = new GameObject(0, 0, 0);
-GameObject * obiekt = new GameObject(*wektor);
-//Model * mod = new Model("models\\cb4.obj");
-
-GameObject * obiekt2 = new GameObject(*wektor);
-
-GameObject * obiekt4 = new GameObject(0, -3, 0);
-GameObject * obiekt5 = new GameObject(0, 3, 0);
-
 GameObject * start = new GameObject(0, 0, 0);
 GameObject * road1 = new GameObject(0, 0, 0);
 GameObject * road2 = new GameObject(0, 0, 0);
@@ -24,9 +12,7 @@ GameObject * finish = new GameObject(0, 0, 0);
 
 GameObject * light = new GameObject(0, 0, 0);
 
-Player * gracz = new Player(0, 0, 0);
-
-GameObject * mix = new GameObject(0, 0, 0);
+Player * gracz = new Player(-2.2, -1.1, 1);
 
 int main(int argc, char* argv[])
 {
@@ -65,13 +51,6 @@ int main(int argc, char* argv[])
 	player.dir.z = -1.0f;
 
 	player.speed = 1.50f;
-
-	//obiekt2->LoadModel("models\\test.obj","models\\test.bmp");
-	obiekt2->LoadModel("models\\asw.obj", "models\\asw.bmp");
-	
-	obiekt4->LoadModel("models\\car.obj", "models\\car.bmp");
-	obiekt5->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
-	mix->LoadModel("models\\merge.obj", "models\\merge2.bmp");
 
 	start->LoadModel("models\\start.obj", "models\\start2.bmp");
 	road1->LoadModel("models\\road.obj", "models\\road3.bmp");
@@ -241,15 +220,6 @@ void OnRender() {
 
 #pragma endregion
 
-	obiekt->SetScal(1, 1, 5);
-	obiekt->SetRot(T / 100, T / 100, T / 100);
-	//obiekt->Draw();
-	//mod->Draw();
-	obiekt2->SetScal(3, 2, 4);
-	obiekt2->SetRot(45, 33, 11);
-	obiekt2->DrawModel();
-
-
 	start->SetPosXYZ(0, -1, 0);
 	start->SetScal(0.5, 0.5, 0.5);
 	start->DrawModel();
@@ -271,101 +241,8 @@ void OnRender() {
 	light->SetScal(0.5, 0.5, 0.5);
 	light->DrawModel();
 
-	//obiekt4->DrawModel();
-	obiekt5->SetScal(0.5, 0.5, 0.5);
-	obiekt5->SetPosXYZ(0,-1,0);
-	obiekt5->DrawModel();
-	//gracz->SetRot(T, 0, 0);
-
+	gracz->SetScal(0.5, 0.5, 0.5);
 	gracz->DrawModel();
-
-	#pragma region Szescian
-	
-		float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
-		glMaterialf(GL_FRONT, GL_SHININESS, 0.0f);
-
-		glPushMatrix();
-			glTranslatef(0.0f, 0.0f, -2.0f);
-			glRotatef(.05f * T, 0.0f, 1.0f, 0.0f);
-			glRotatef(45.0f, 1.0f, 0.0f, 1.0f);
-			glutSolidCube(1.0f);
-		glPopMatrix();
-
-	#pragma endregion
-	
-	#pragma region Kula 1
-	
-		float m1_amb[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-		float m1_dif[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-		float m1_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, m1_amb);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, m1_dif);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, m1_spe);
-		glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
-
-		glPushMatrix();
-			glTranslatef(-2.0f, 2.0f, 0.0f);
-			glutSolidSphere(1.0f, 32, 32);
-		glPopMatrix();
-
-	#pragma endregion
-	
-	#pragma region Kula 2
-	
-		float m2_amb[] = { 0.0f, 1.0f, 0.0f, 1.0f };
-		float m2_dif[] = { 0.0f, 1.0f, 0.0f, 1.0f };
-		float m2_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, m2_amb);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, m2_dif);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, m2_spe);
-		glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
-	
-		glPushMatrix();
-			glTranslatef(2.0f, 2.0f, 0.0f);
-			glutSolidSphere(1.0f, 32, 32);
-		glPopMatrix();
-
-	#pragma endregion
-	
-	#pragma region Kula 3
-	
-		float m3_amb[] = { 0.0f, 0.0f, 1.0f, 1.0f };
-		float m3_dif[] = { 0.0f, 0.0f, 1.0f, 1.0f };
-		float m3_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, m3_amb);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, m3_dif);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, m3_spe);
-		glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
-
-		glPushMatrix();
-			glTranslatef(-2.0f, -2.0f, 0.0f);
-			glutSolidSphere(1.0f, 32, 32);
-		glPopMatrix();
-
-	#pragma endregion
-	
-	#pragma region Kula 4
-	
-		float m4_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float m4_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		float m4_spe[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-		glMaterialfv(GL_FRONT, GL_AMBIENT, m4_amb);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, m4_dif);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, m4_spe);
-		glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
-	
-		glPushMatrix();
-			glTranslatef(2.0f, -2.0f, 0.0f);
-			glutSolidSphere(1.0f, 32, 32);
-		glPopMatrix();
-
-	#pragma endregion
-	
 
 	glutSwapBuffers();
 	glFlush();
