@@ -12,3 +12,35 @@ void Player::Draw()
 {
 	GameObject::DrawModel();
 }
+
+void Player::MoveForward()
+{
+	SetPosZ(GetPosZ() + velocity);
+	//SetPosZ(GetPosZ() + 1);
+}
+
+void Player::LooseSpeed()
+{
+	velocity /= 1.05;
+}
+
+
+float Player::GetSpeed()
+{
+	return speed;
+}
+float Player::GetVelocity()
+{
+	return velocity;
+}
+
+void Player::SetSpeed(float s)
+{
+	speed = s;
+}
+void Player::SetVelocity(float v)
+{
+	velocity = v;
+}
+
+//player.pos.x += player.dir.x * player.velM * .1f;

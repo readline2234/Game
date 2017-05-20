@@ -148,6 +148,16 @@ void OnTimer(int id) {
 			player.velS = player.speed;
 		}
 
+		if (keystate['o']) {
+			//gracz->SetVelocity = gracz->GetSpeed();
+			gracz->SetVelocity(0.1);
+			cout << "v: " << gracz->GetVelocity() << endl;
+		}
+
+		if (keystate['l']) {
+
+		}
+
 		// Obrot kamery
 		float phi = atan2(player.dir.z, player.dir.x);
 		if (keystate['q']) {
@@ -169,7 +179,7 @@ void OnTimer(int id) {
 		player.pos.x += player.dir.x * player.velM * .1f;
 		player.pos.y += player.dir.y * player.velM * .1f;
 		player.pos.z += player.dir.z * player.velM * .1f;
-
+		gracz->MoveForward();
 		// Chodzenie na boki
 		player.pos.x += per.x * player.velS * .1f;
 		player.pos.z += per.z * player.velS * .1f;
@@ -178,6 +188,9 @@ void OnTimer(int id) {
 		player.velM /= 1.2;
 		player.velS /= 1.2;
 
+		gracz->LooseSpeed();
+
+		// Mike jazda przod
 
 
 
