@@ -131,11 +131,17 @@ void OnTimer(int id) {
 		if (keystate['o']) {
 			//gracz->SetVelocity = gracz->GetSpeed();
 			gracz->SetVelocity(0.1);
-			cout << "v: " << gracz->GetVelocity() << endl;
+			gracz->GainRPM();
+			gracz->GainAcc();
+			//cout << "v: " << gracz->GetVelocity() << endl;
 		}
 
 		if (keystate['l']) {
 			cout << player.pos.x << " " << player.pos.y << " " << player.pos.z << endl;
+		}
+
+		if (keystate['i']) {
+			gracz->GearUp();
 		}
 
 		// Obrot kamery
@@ -169,10 +175,11 @@ void OnTimer(int id) {
 		player.velS /= 1.2;
 
 		gracz->LooseSpeed();
-
+		gracz->LooseRPM();
+		gracz->LooseAcc();
 		// Mike jazda przod
 
-
+		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << endl;
 
 
 
@@ -209,7 +216,7 @@ void OnRender() {
 	//);
 
 	gluLookAt(
-		9.0f, 3.5f, gracz->GetPosZ()-4,//-6.0f,
+		9.0f, 4.0f, gracz->GetPosZ()-4,//-6.0f,
 		0.0f,0.0f, gracz->GetPosZ(),
 		0.0f, 1.0f, 0.0f
 	);
