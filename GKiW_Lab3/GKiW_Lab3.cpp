@@ -12,7 +12,8 @@ GameObject * finish = new GameObject(0, 0, 0);
 
 GameObject * light = new GameObject(0, 0, 0);
 
-Player * gracz = new Player(-2.2, -1.1, 1);
+Player * gracz = new Player(2.2, -1.1, 1);
+Player * oponent = new Player(-2.2, -1.1, 1);
 
 int main(int argc, char* argv[])
 {
@@ -60,7 +61,7 @@ int main(int argc, char* argv[])
 	light->LoadModel("models\\light.obj", "models\\light2.bmp");
 
 	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
-
+	oponent->LoadModel("models\\lp4.obj", "models\\lp4purple.bmp");
 
 	glutMainLoop();
 
@@ -134,7 +135,7 @@ void OnTimer(int id) {
 		}
 
 		if (keystate['l']) {
-
+			cout << player.pos.x << " " << player.pos.y << " " << player.pos.z << endl;
 		}
 
 		// Obrot kamery
@@ -201,9 +202,15 @@ void OnRender() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
+	//gluLookAt(
+	//	player.pos.x, player.pos.y, player.pos.z,
+	//	player.pos.x + player.dir.x, player.pos.y + player.dir.y, player.pos.z + player.dir.z,
+	//	0.0f, 1.0f, 0.0f
+	//);
+
 	gluLookAt(
-		player.pos.x, player.pos.y, player.pos.z,
-		player.pos.x + player.dir.x, player.pos.y + player.dir.y, player.pos.z + player.dir.z,
+		9.0f, 3.5f, gracz->GetPosZ()-4,//-6.0f,
+		0.0f,0.0f, gracz->GetPosZ(),
 		0.0f, 1.0f, 0.0f
 	);
 
@@ -243,6 +250,9 @@ void OnRender() {
 
 	gracz->SetScal(0.5, 0.5, 0.5);
 	gracz->DrawModel();
+
+	oponent->SetScal(0.5, 0.5, 0.5);
+	oponent->DrawModel();
 
 	glutSwapBuffers();
 	glFlush();
