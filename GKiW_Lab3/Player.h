@@ -12,16 +12,19 @@ private:
 	//player.dir.z = -1.0f;
 
 	float speed = 1.50f;
-	float velocity=0;
+	float velocity = 0;
 
 	int gear = 1;
 	float rpm = 800;
 	float acc = 0;
 
-	float FIRST_GEAR_CONST = 0.8;		//dopisac wiecej sta³ych
-	float SECOND_GEAR_CONST = 0.5;
-	float THIRD_GEAR_CONST = 0.3;
-	float FOURTH_GEAR_CONST = 0.1;
+	float FIRST_GEAR_CONST = 0.0;		//dopisac wiecej sta³ych
+	float SECOND_GEAR_CONST = 0.0;
+	float THIRD_GEAR_CONST = 0.0;
+	float FOURTH_GEAR_CONST = 0.0;
+
+	float SPEED_LOSS = 1.05;
+
 
 	int GEARS_NUMBER = 4;
 

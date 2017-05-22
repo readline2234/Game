@@ -15,6 +15,8 @@ GameObject * light = new GameObject(0, 0, 0);
 Player * gracz = new Player(2.2, -1.1, 1);
 Player * oponent = new Player(-2.2, -1.1, 1);
 
+using namespace std;
+
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -97,6 +99,10 @@ int main(int argc, char* argv[])
 	}
 
 	void OnKeyUp(unsigned char key, int x, int y) {
+
+		if (key == 'i')					// Nie moze byc nizej
+			gracz->GearUp();
+
 		keystate[key] = false;
 	}
 
@@ -140,8 +146,9 @@ void OnTimer(int id) {
 			cout << player.pos.x << " " << player.pos.y << " " << player.pos.z << endl;
 		}
 
-		if (keystate['i']) {
-			gracz->GearUp();
+		if (!keystate['i']) 
+		{
+			// bieg w gorê - gracz->GearUp(), definicja wyzej w KeyUp
 		}
 
 		// Obrot kamery
