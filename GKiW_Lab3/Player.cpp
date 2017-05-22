@@ -18,7 +18,7 @@ void Player::MoveForward()
 	if (acc > 10)
 		velocity = 0.5;
 
-	SetPosZ(GetPosZ() + (velocity * acc/1000));
+	SetPosZ(GetPosZ() + (velocity * acc/1000)+ booster );
 	//SetPosZ(GetPosZ() + 1);
 }
 
@@ -151,12 +151,30 @@ void Player::GearUp()
 		temp_rpm = 1-abs(1 - temp_rpm);
 
 		shifts[gear] = temp_rpm ;	//migawka zmiany biegu
+		
+		booster = temp_rpm * BOOSTER_VALUE;
+
 		gear++;
 		rpm = RPM_AFTER_SHIFT;
+
+		
+
 	}
 	
 
 
+}
+
+void Player::LooseBooster()
+{
+	if (booster > 1)
+	{
+		booster -= BOOSTER_LOSS;
+	}
+	if (booster < 1 && booster > 0)
+	{
+		booster -= 0.01;
+	}
 }
 
 float Player::GetSpeed()
@@ -178,6 +196,10 @@ float Player::GetGear()
 float Player::GetAcc()
 {
 	return acc;
+}
+float Player::GetBooster()
+{
+	return booster;
 }
 
 void Player::SetSpeed(float s)

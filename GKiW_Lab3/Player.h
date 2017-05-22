@@ -34,12 +34,15 @@ private:
 
 	const float SPEED_LOSS = 1.05;
 	const float ACC_LOSS = 1.1;
+	const float BOOSTER_LOSS = 1.0;
+	const float BOOSTER_VALUE = 10;
 	float speed = 1;
 	float velocity = 0;
 
 	int gear = 1;
 	float rpm = MIN_RPM;
 	float acc = 0;
+	float booster = 0;
 
 	float shifts[3] = {0};	//ewentualnie dynamicznie dla roznych pojazdow - shifts[GEARS_NUMBER]
 	
@@ -53,6 +56,7 @@ public:
 	float GetRPM();
 	float GetGear();
 	float GetAcc();
+	float GetBooster();
 
 	void SetSpeed(float s);
 	void SetVelocity(float v);
@@ -67,6 +71,9 @@ public:
 	void LooseAcc();
 
 	void GearUp();
+
+	void LooseBooster();
+	
 
 	void Draw();
 

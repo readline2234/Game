@@ -184,9 +184,10 @@ void OnTimer(int id) {
 		gracz->LooseSpeed();
 		gracz->LooseRPM();
 		gracz->LooseAcc();
+		gracz->LooseBooster();
 		// Mike jazda przod
 
-		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << endl;
+		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << endl;
 
 
 
