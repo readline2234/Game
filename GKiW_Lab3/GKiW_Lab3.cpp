@@ -136,7 +136,7 @@ void OnTimer(int id) {
 
 		if (keystate['o']) {
 			//gracz->SetVelocity = gracz->GetSpeed();
-			gracz->SetVelocity(0.1);
+			gracz->SetVelocity(0.5);
 			gracz->GainRPM();
 			gracz->GainAcc();
 			//cout << "v: " << gracz->GetVelocity() << endl;
@@ -249,11 +249,11 @@ void OnRender() {
 	road1->SetScal(0.5, 0.5, 0.5);
 	road1->DrawModel();
 
-	road2->SetPosXYZ(0, -1, 39.1);
-	road2->SetScal(0.5, 0.5, 0.5);
+	road2->SetPosXYZ(0, -1, 150);
+	road2->SetScal(0.5, 0.5, 12);
 	road2->DrawModel();
 
-	finish->SetPosXYZ(0, -1, 70.1);
+	finish->SetPosXYZ(0, -1, 400);
 	finish->SetRot(0, 180, 0);
 	finish->SetScal(0.5, 0.5, 0.5);
 	finish->DrawModel();

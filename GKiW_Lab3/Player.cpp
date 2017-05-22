@@ -15,46 +15,69 @@ void Player::Draw()
 
 void Player::MoveForward()
 {
+	if (acc > 10)
+		velocity = 0.5;
+
 	SetPosZ(GetPosZ() + (velocity * acc/1000));
 	//SetPosZ(GetPosZ() + 1);
 }
 
 void Player::LooseSpeed()
 {
-	velocity /= 1.05;
+	if (velocity > 0.02);
+	velocity /= SPEED_LOSS;
+	//velocity = 0;
 }
 
 void Player::LooseRPM()
 {
-	if (rpm > 800)
+	if (rpm > MIN_RPM)
 	{
-		rpm -= 1.1;
+		switch (gear)
+		{
+		case 1: {
+			rpm -= FIRST_GEAR_RPM_LOSS;
+			break;
+		}
+		case 2: {
+			rpm -= SECOND_GEAR_RPM_LOSS;
+			break;
+		}
+		case 3: {
+			rpm -= THIRD_GEAR_RPM_LOSS;
+			break;
+		}
+		case 4: {
+			rpm -= FOURTH_GEAR_RPM_LOSS;
+			break;
+		}
+		}
 	}
 }
 void Player::GainRPM()
 {
-	if (rpm > 3900)
+	if (rpm > MAX_RPM_LOWER)	//3900
 	{
-		rpm = 4000;
+		rpm = MAX_RPM;
 		return;
 	}
 
 	switch (gear)
 	{
 	case 1: {
-		rpm += 9;
+		rpm += FIRST_GEAR_RPM_GAIN;
 		break;
 	}
 	case 2: {
-		rpm += 5;
+		rpm += SECOND_GEAR_RPM_GAIN;
 		break;
 	}
 	case 3: {
-		rpm += 3 ;
+		rpm += THIRD_GEAR_RPM_GAIN;
 		break;
 	}
 	case 4: {
-		rpm += 2;
+		rpm += FOURTH_GEAR_RPM_GAIN;
 		break;
 	}
 	}
@@ -64,34 +87,52 @@ void Player::LooseAcc()
 {
 	if (acc > 0)
 	{
-		acc -= 1.1;
+		switch (gear)
+		{
+		case 1: {
+			acc -= FIRST_GEAR_ACC_LOSS;
+			break;
+		}
+		case 2: {
+			acc -= SECOND_GEAR_ACC_LOSS;
+			break;
+		}
+		case 3: {
+			acc -= THIRD_GEAR_ACC_LOSS;
+			break;
+		}
+		case 4: {
+			acc -= FOURTH_GEAR_ACC_LOSS;
+			break;
+		}
+		}
 	}
 }
 void Player::GainAcc()
 {
 
-	if (rpm > 3990)		//TU POWINNA BYC STALA MAX RPM
+	if (rpm > MAX_RPM_LOWER)		//3990 bylo jest 3900
 	{
-		acc += 1.1;		//TU POWINNA BYC STALA LOSE ACC
+		acc += OVER_RPM_ACC_GAIN;		//?
 		return;
 	}
 
 	switch (gear)
 	{
 	case 1: {
-		acc += 7;
+		acc += FIRST_GEAR_ACC_GAIN;
 		break;
 	}
 	case 2: {
-		acc += 5;
+		acc += SECOND_GEAR_ACC_GAIN;
 		break;
 	}
 	case 3: {
-		acc += 3;
+		acc += THIRD_GEAR_ACC_GAIN;
 		break;
 	}
 	case 4: {
-		acc += 2;
+		acc += FOURTH_GEAR_ACC_GAIN;
 		break;
 	}
 	}
@@ -106,12 +147,12 @@ void Player::GearUp()
 
 	if (gear < GEARS_NUMBER)
 	{
-		float temp_rpm = rpm / 2500;
+		float temp_rpm = rpm / PERF_RPM;
 		temp_rpm = 1-abs(1 - temp_rpm);
 
 		shifts[gear] = temp_rpm ;	//migawka zmiany biegu
 		gear++;
-		rpm = 800;
+		rpm = RPM_AFTER_SHIFT;
 	}
 	
 

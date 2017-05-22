@@ -1,32 +1,45 @@
 #pragma once
 #include "GameObject.h"
 
-
 class Player : public GameObject {
 private:
 
+	const float MIN_RPM = 800;
+	const float PERF_RPM = 2500;
+	const float MAX_RPM = 4000;
+	const float MAX_RPM_LOWER = 3900;	//pomocnicza zmienna, troche mniej niz max
+	const float RPM_AFTER_SHIFT = 1000;
+	int GEARS_NUMBER = 4;
 
-	//Vec3 * dir;
-	//player.dir.x = 0.0f;
-	//player.dir.y = 0.0f;
-	//player.dir.z = -1.0f;
+	const float FIRST_GEAR_RPM_GAIN =	40;
+	const float SECOND_GEAR_RPM_GAIN = 20;
+	const float THIRD_GEAR_RPM_GAIN = 15;
+	const float FOURTH_GEAR_RPM_GAIN = 5;
 
-	float speed = 1.50f;
+	const float FIRST_GEAR_RPM_LOSS = 25;
+	const float SECOND_GEAR_RPM_LOSS = 10;
+	const float THIRD_GEAR_RPM_LOSS = 8;
+	const float FOURTH_GEAR_RPM_LOSS = 2;
+
+	const float FIRST_GEAR_ACC_GAIN = 20;
+	const float SECOND_GEAR_ACC_GAIN = 15;
+	const float THIRD_GEAR_ACC_GAIN = 10;
+	const float FOURTH_GEAR_ACC_GAIN = 10;
+	const float OVER_RPM_ACC_GAIN = 1.1;	//zbyt duze (maksymalne) obroty, predkosc nie rosnie
+
+	const float FIRST_GEAR_ACC_LOSS = 5;	//odwortnie	- najmniejsdza
+	const float SECOND_GEAR_ACC_LOSS = 5;
+	const float THIRD_GEAR_ACC_LOSS = 7;
+	const float FOURTH_GEAR_ACC_LOSS = 10;	// najwieksza
+
+	const float SPEED_LOSS = 1.05;
+	const float ACC_LOSS = 1.1;
+	float speed = 1;
 	float velocity = 0;
 
 	int gear = 1;
-	float rpm = 800;
+	float rpm = MIN_RPM;
 	float acc = 0;
-
-	float FIRST_GEAR_CONST = 0.0;		//dopisac wiecej sta³ych
-	float SECOND_GEAR_CONST = 0.0;
-	float THIRD_GEAR_CONST = 0.0;
-	float FOURTH_GEAR_CONST = 0.0;
-
-	float SPEED_LOSS = 1.05;
-
-
-	int GEARS_NUMBER = 4;
 
 	float shifts[3] = {0};	//ewentualnie dynamicznie dla roznych pojazdow - shifts[GEARS_NUMBER]
 	
