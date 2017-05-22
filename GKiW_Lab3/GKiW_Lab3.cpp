@@ -189,6 +189,15 @@ void OnTimer(int id) {
 
 		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << endl;
 
+		//oponent
+		oponent->SetVelocity(0.5);
+		oponent->MoveForward();
+		oponent->GainRPM();
+		oponent->GainAcc();
+		if (oponent->GetGear() == 1 && oponent->GetRPM() == 900)
+		{
+			//dokonczyc
+		}
 
 
 	#pragma endregion
