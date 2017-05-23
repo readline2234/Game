@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 
+bool glob_moved = 0;
+
 Player::Player(float x, float y, float z) : GameObject(x,y,z)
 {
 }
@@ -15,20 +17,18 @@ void Player::Draw()
 
 void Player::MoveForward()
 {
-	if (enabled)
-	{
 		if (acc > 10)
 			velocity = 0.5;
 
 		SetPosZ(GetPosZ() + (velocity * acc / 1000) + booster);
+
+
+
 		//SetPosZ(GetPosZ() + 1);
-	}
 }
 
 void Player::GainRPM()
 {
-	if (enabled)
-	{
 		if (rpm > MAX_RPM_LOWER)	//3900
 		{
 			rpm = MAX_RPM;
@@ -57,17 +57,23 @@ void Player::GainRPM()
 			rpm += FOURTH_GEAR_RPM_GAIN;
 			break;
 		}
-		}
 	}
 }
 void Player::GainAcc()
 {
-	if (enabled)
-	{
+		if (acc > 0)
+		{
+			glob_moved = true; // gracz poruszyl sie do przodu
+		}
+	
+
 		if (rpm > MAX_RPM_LOWER)		//3990 bylo jest 3900
 		{
-			acc += OVER_RPM_ACC_GAIN;		//?
-			return;
+			if (gear != 0)
+			{
+				acc += OVER_RPM_ACC_GAIN;		//?
+				return;
+			}
 		}
 
 		switch (gear)
@@ -93,7 +99,6 @@ void Player::GainAcc()
 			break;
 		}
 		}
-	}
 }
 
 void Player::LooseSpeed()
@@ -199,6 +204,24 @@ void Player::GearUp()
 
 }
 
+void Player::CheckFalseStart()	// od momentu wywolania czeka 3 sekundy, a po 3 sekundach sprawdza
+{
+	if (!falsestart_checked)	//raz sprawdzoono falstart, nie sprawdzaj juz wiecej
+	{
+	falsestart_checked = true;
+	glutTimerFunc(3000, &Player::CheckMoved, 0);
+	}
+}
+
+void Player::CheckMoved(int)
+{
+		if (glob_moved)		//wszystko na zmiennej globalnej bo ten durny glutitmerfunc nie chce wzi¹æ metody
+		{					//zwiazanej z obiektem, tylko statyczne.
+			cout << "FALSTART" << endl;
+			cin >> glob_moved;
+		}
+}
+
 float Player::GetSpeed()
 {
 	return speed;
@@ -223,9 +246,9 @@ float Player::GetBooster()
 {
 	return booster;
 }
-bool  Player::GetEnabled()
+bool  Player::GetMoved()
 {
-	return enabled;
+	return glob_moved;
 }
 
 void Player::SetSpeed(float s)

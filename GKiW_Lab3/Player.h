@@ -52,6 +52,9 @@ private:
 	float booster = 0;
 
 	float shifts[4] = {0};	//ewentualnie dynamicznie dla roznych pojazdow - shifts[GEARS_NUMBER]
+
+	bool moved = false; // czy gracz poruszyl sie do przodu
+	bool falsestart_checked=false; // czy chociaz raz uruchomiono juz spradzenie falstartu
 	
 
 public:
@@ -64,7 +67,8 @@ public:
 	float GetGear();
 	float GetAcc();
 	float GetBooster();
-	bool GetEnabled();
+	bool GetMoved();
+
 
 	void SetSpeed(float s);
 	void SetVelocity(float v);
@@ -83,6 +87,8 @@ public:
 
 	void LooseBooster();
 	
+	void CheckFalseStart();
+	static void CheckMoved(int);
 
 	void Draw();
 
