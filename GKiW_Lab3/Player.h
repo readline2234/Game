@@ -30,7 +30,7 @@ private:
 	const float FIRST_GEAR_ACC_LOSS = 5;	//odwortnie	- najmniejsdza
 	const float SECOND_GEAR_ACC_LOSS = 5;
 	const float THIRD_GEAR_ACC_LOSS = 7;
-	const float FOURTH_GEAR_ACC_LOSS = 10;	// najwieksza
+	const float FOURTH_GEAR_ACC_LOSS = 8;	// najwieksza
 
 	const float SPEED_LOSS = 1.05;
 	const float ACC_LOSS = 1.1;

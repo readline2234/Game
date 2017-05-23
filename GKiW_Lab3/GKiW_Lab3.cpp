@@ -188,16 +188,23 @@ void OnTimer(int id) {
 		// Mike jazda przod
 
 		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << endl;
+		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
 		oponent->SetVelocity(0.5);
 		oponent->MoveForward();
 		oponent->GainRPM();
 		oponent->GainAcc();
-		if (oponent->GetGear() == 1 && oponent->GetRPM() == 900)
+		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )
 		{
-			//dokonczyc
+			oponent->GearUp();
 		}
+
+		oponent->LooseSpeed();
+		oponent->LooseRPM();
+		oponent->LooseAcc();
+		oponent->LooseBooster();
+
 
 
 	#pragma endregion
