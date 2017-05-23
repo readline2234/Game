@@ -36,6 +36,9 @@ private:
 	const float ACC_LOSS = 1.1;
 	const float BOOSTER_LOSS = 1.0;
 	const float BOOSTER_VALUE = 10;
+
+	bool enabled = 0;
+
 	float speed = 1;
 	float velocity = 0;
 
@@ -57,9 +60,11 @@ public:
 	float GetGear();
 	float GetAcc();
 	float GetBooster();
+	bool GetEnabled();
 
 	void SetSpeed(float s);
 	void SetVelocity(float v);
+	void SetEnabled();
 
 	void MoveForward();
 	void LooseSpeed();

@@ -17,6 +17,13 @@ Player * oponent = new Player(-2.2, -1.1, 1);
 
 using namespace std;
 
+void countdown(int)
+{
+	oponent->SetEnabled();
+	gracz->SetEnabled();
+}
+
+
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
@@ -151,6 +158,12 @@ void OnTimer(int id) {
 			// bieg w gorê - gracz->GearUp(), definicja wyzej w KeyUp
 		}
 
+		if (keystate['u'])
+		{
+			gracz->SetEnabled();
+			oponent->SetEnabled();
+		}
+
 		// Obrot kamery
 		float phi = atan2(player.dir.z, player.dir.x);
 		if (keystate['q']) {
@@ -185,7 +198,10 @@ void OnTimer(int id) {
 		gracz->LooseRPM();
 		gracz->LooseAcc();
 		gracz->LooseBooster();
-		// Mike jazda przod
+		
+		// MIKEMIKEMIKE
+		glutTimerFunc(3000, countdown, 0);	//odliczanie
+
 
 		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << endl;
 		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
