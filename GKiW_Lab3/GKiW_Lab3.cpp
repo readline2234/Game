@@ -200,7 +200,7 @@ void OnTimer(int id) {
 		gracz->LooseBooster();
 		
 		// MIKEMIKEMIKE
-		glutTimerFunc(3000, countdown, 0);	//odliczanie
+		//glutTimerFunc(3000, countdown, 0);	//odliczanie
 
 
 		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << endl;

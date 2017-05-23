@@ -37,6 +37,10 @@ void Player::GainRPM()
 
 		switch (gear)
 		{
+		case 0: {
+			rpm += ZERO_GEAR_RPM_GAIN;
+			break;
+		}
 		case 1: {
 			rpm += FIRST_GEAR_RPM_GAIN;
 			break;
@@ -68,6 +72,10 @@ void Player::GainAcc()
 
 		switch (gear)
 		{
+		case 0: {
+			acc += ZERO_GEAR_ACC_GAIN;
+			break;
+		}
 		case 1: {
 			acc += FIRST_GEAR_ACC_GAIN;
 			break;
@@ -100,6 +108,10 @@ void Player::LooseRPM()
 	{
 		switch (gear)
 		{
+		case 0: {
+			rpm -= ZERO_GEAR_RPM_LOSS;
+			break;
+		}
 		case 1: {
 			rpm -= FIRST_GEAR_RPM_LOSS;
 			break;
@@ -125,6 +137,10 @@ void Player::LooseAcc()
 	{
 		switch (gear)
 		{
+		case 0: {
+			acc -= ZERO_GEAR_ACC_LOSS;
+			break;
+		}
 		case 1: {
 			acc -= FIRST_GEAR_ACC_LOSS;
 			break;
