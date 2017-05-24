@@ -181,10 +181,11 @@ void Player::GearUp()
 {
 	if (enabled)
 	{
-		cout << shifts[0] << endl;
-		cout << shifts[1] << endl;
-		cout << shifts[2] << endl;
-		cout << shifts[3] << endl;
+		//cout << shifts[0] << endl;
+		//cout << shifts[1] << endl;
+		//cout << shifts[2] << endl;
+		//cout << shifts[3] << endl;
+		moved = 1;
 
 		if (gear < GEARS_NUMBER)
 		{
@@ -210,7 +211,7 @@ void Player::CheckFalseStart()	//
 {
 	if (!falsestart_checked)	//raz wywolany timer, pozniej rekurencyjne co 100ms az do 3000ms
 	{
-	falsestart_checked = true;
+	//falsestart_checked = true;
 	glutTimerFunc(100, &Player::CheckMoved, 100);
 	}
 }
@@ -223,13 +224,13 @@ void Player::CheckMoved(int time)
 			cin >> moved;
 		}
 
-		if (time <= 3000)
+		if (time <= 2900)
 		{
 			glutTimerFunc(100, &Player::CheckMoved, time+100);
 		}
 		else
 		{
-			falsestart_checked = true;
+ 			falsestart_checked = true;
 		}
 }
 
@@ -277,4 +278,10 @@ void Player::SetEnabled()
 void Player::ClearEnabled()
 {
 	enabled = 0;
+}
+
+void Player::Teleport()
+{
+	float z; cin >> z;
+	SetPosZ(z);
 }

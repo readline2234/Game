@@ -39,7 +39,7 @@ private:
 	const float SPEED_LOSS = 1.05;
 	const float ACC_LOSS = 1.1;
 	const float BOOSTER_LOSS = 0.5;		//1.0
-	const float BOOSTER_VALUE = 5.0;	//10.0
+	const float BOOSTER_VALUE = 3.0;	//10.0
 
 	bool enabled = 1;
 
@@ -92,5 +92,7 @@ public:
 	static void CheckMoved(int time);
 
 	void Draw();
+
+	void Teleport();
 
 };

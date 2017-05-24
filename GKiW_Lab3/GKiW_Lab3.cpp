@@ -8,6 +8,7 @@
 GameObject * start = new GameObject(0, 0, 0);
 GameObject * road1 = new GameObject(0, 0, 0);
 GameObject * road2 = new GameObject(0, 0, 0);
+GameObject * road3 = new GameObject(0, 0, 0);
 GameObject * finish = new GameObject(0, 0, 0);
 
 GameObject * light = new GameObject(0, 0, 0);
@@ -20,6 +21,32 @@ using namespace std;
 void OponentEnable(int)
 {
 	oponent->SetEnabled();
+}
+void WhoWin()	//ewentualnie popraw to zeby po zatrzymaniu i pozniej puszczeniu gry nie wygra³ drugi
+{
+	if (gracz->GetPosZ() > 1988)
+	{
+		cout << "WYGRAL GRACZ" << endl;		
+		cin >> T;
+	}
+
+	if (oponent->GetPosZ() > 1988)
+	{
+		cout << "WYGRAL KOMPUTER" << endl;
+		cin >> T;
+	}
+
+	return;
+}
+
+void CountdownYellow(int)
+{
+		light->LoadModel("models\\light.obj", "models\\light2.bmp");
+}
+
+void CountdownGreen(int)
+{
+	light->LoadModel("models\\light.obj", "models\\light1.bmp");
 }
 
 int main(int argc, char* argv[])
@@ -64,13 +91,20 @@ int main(int argc, char* argv[])
 	road1->LoadModel("models\\road.obj", "models\\road3.bmp");
 	road2->LoadModel("models\\road.obj", "models\\road3.bmp");
 	finish->LoadModel("models\\finish.obj", "models\\finish3.bmp");
+	road3->LoadModel("models\\road.obj", "models\\road3.bmp");
 
-	light->LoadModel("models\\light.obj", "models\\light2.bmp");
+	light->LoadModel("models\\light.obj", "models\\light3.bmp");
 
 	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
 	oponent->LoadModel("models\\lp4.obj", "models\\lp4purple.bmp");
 
 	oponent->ClearEnabled();
+
+	glutTimerFunc(2200, CountdownYellow, 0);									//22
+	glutTimerFunc(3400, CountdownGreen, 0);										//34
+	gracz->CheckFalseStart();
+	glutTimerFunc(3400, OponentEnable, 0);	//kiedy startuje komputer >34bezp	//34
+
 
 	glutMainLoop();
 
@@ -150,7 +184,7 @@ void OnTimer(int id) {
 		}
 
 		if (keystate['l']) {
-			cout << player.pos.x << " " << player.pos.y << " " << player.pos.z << endl;
+			cout << gracz->GetPosX() << "\t " << gracz->GetPosY() << "\t " << gracz->GetPosZ() << endl;
 		}
 
 		if (!keystate['i']) 
@@ -160,8 +194,9 @@ void OnTimer(int id) {
 
 		if (keystate['u'])
 		{
-			gracz->SetEnabled();
-			oponent->SetEnabled();
+			//gracz->SetEnabled();
+			//oponent->SetEnabled();
+			gracz->Teleport();
 		}
 
 		// Obrot kamery
@@ -200,11 +235,11 @@ void OnTimer(int id) {
 		gracz->LooseBooster();
 		
 		// MIKEMIKEMIKE
-		glutTimerFunc(3600, OponentEnable, 0);	//kiedy startuje komputer
+		//glutTimerFunc(3300, OponentEnable, 0);	//kiedy startuje komputer
 
 
 		//cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
-		cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
+		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
 		oponent->SetVelocity(0.5);
@@ -228,8 +263,10 @@ void OnTimer(int id) {
 		oponent->LooseAcc();
 		oponent->LooseBooster();
 
-		gracz->CheckFalseStart();
 
+
+
+		WhoWin();
 
 	#pragma endregion
 
@@ -286,18 +323,22 @@ void OnRender() {
 	start->SetScal(0.5, 0.5, 0.5);
 	start->DrawModel();
 
-	road1->SetPosXYZ(0, -1, 19.5);
-	road1->SetScal(0.5, 0.5, 0.5);
-	road1->DrawModel();
+	//road1->SetPosXYZ(0, -1, 19.5);
+	//road1->SetScal(0.5, 0.5, 0.5);
+	//road1->DrawModel();
 
-	road2->SetPosXYZ(0, -1, 150);
-	road2->SetScal(0.5, 0.5, 12);
+	road2->SetPosXYZ(0, -1, 487);
+	road2->SetScal(0.5, 0.5, 50);
 	road2->DrawModel();
 
-	finish->SetPosXYZ(0, -1, 400);
+	finish->SetPosXYZ(0, -1, 1988.5);
 	finish->SetRot(0, 180, 0);
 	finish->SetScal(0.5, 0.5, 0.5);
 	finish->DrawModel();
+
+	road3->SetPosXYZ(0, -1, 2465.5);
+	road3->SetScal(0.5, 0.5, 50);
+	road3->DrawModel();
 	
 	light->SetPosXYZ(0, 1.5, 7.5);
 	light->SetScal(0.5, 0.5, 0.5);
