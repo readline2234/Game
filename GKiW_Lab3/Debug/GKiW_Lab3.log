@@ -4,8 +4,8 @@ g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\player.h(39): warning C4305: 'in
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\player.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(16): warning C4305: 'argument': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(194): warning C4305: '/=': truncation from 'double' to 'float'
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(195): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(196): warning C4305: '/=': truncation from 'double' to 'float'
 GKiW_Lab3.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.exe
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.pdb (Full PDB)

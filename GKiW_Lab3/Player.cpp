@@ -29,8 +29,6 @@ void Player::MoveForward()
 
 void Player::GainRPM()
 {
-	if (enabled)
-	{
 		if (rpm > MAX_RPM_LOWER)	//3900
 		{
 			rpm = MAX_RPM;
@@ -60,12 +58,9 @@ void Player::GainRPM()
 			break;
 		}
 		}
-	}
 }
 void Player::GainAcc()
 {
-	if (enabled)
-	{
 		if (acc > 0)
 		{
 			moved = true; // gracz poruszyl sie do przodu
@@ -104,7 +99,6 @@ void Player::GainAcc()
 			break;
 		}
 		}
-	}
 }
 
 void Player::LooseSpeed()
@@ -185,29 +179,31 @@ void Player::LooseBooster()
 
 void Player::GearUp()
 {
-	cout << shifts[0] << endl;
-	cout << shifts[1] << endl;
-	cout << shifts[2] << endl;
-	cout << shifts[3] << endl;
-
-	if (gear < GEARS_NUMBER)
+	if (enabled)
 	{
-		float temp_rpm = rpm / PERF_RPM;
-		temp_rpm = 1-abs(1 - temp_rpm);
+		cout << shifts[0] << endl;
+		cout << shifts[1] << endl;
+		cout << shifts[2] << endl;
+		cout << shifts[3] << endl;
 
-		shifts[gear] = temp_rpm ;	//migawka zmiany biegu
-		
-		booster = temp_rpm * BOOSTER_VALUE;
+		if (gear < GEARS_NUMBER)
+		{
+			float temp_rpm = rpm / PERF_RPM;
+			temp_rpm = 1 - abs(1 - temp_rpm);
 
-		gear++;
-		rpm = RPM_AFTER_SHIFT;
+			shifts[gear] = temp_rpm;	//migawka zmiany biegu
 
-		
+			booster = temp_rpm * BOOSTER_VALUE;
+
+			gear++;
+			rpm = RPM_AFTER_SHIFT;
+
+
+
+		}
+
 
 	}
-	
-
-
 }
 
 void Player::CheckFalseStart()	// 

@@ -200,16 +200,23 @@ void OnTimer(int id) {
 		gracz->LooseBooster();
 		
 		// MIKEMIKEMIKE
-		glutTimerFunc(2000, OponentEnable, 0);	//odliczanie
+		glutTimerFunc(3600, OponentEnable, 0);	//kiedy startuje komputer
 
 
-		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
-		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
+		//cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
+		cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
 		oponent->SetVelocity(0.5);
 		oponent->MoveForward();
+
+		if (oponent->GetGear() == 0 && oponent->GetRPM() > 3000)
+		{ }		// na zerowym biegu odpusc obroty jak > 3000 , w przeciwnym przypadku GAZU!
+		else
+		{
 		oponent->GainRPM();
+		}
+
 		oponent->GainAcc();
 		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )
 		{
