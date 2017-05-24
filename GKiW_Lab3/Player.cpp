@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
-
-bool glob_moved = 0;
+bool Player::moved = false;
+bool Player::falsestart_checked = false;
 
 Player::Player(float x, float y, float z) : GameObject(x,y,z)
 {
@@ -29,6 +29,8 @@ void Player::MoveForward()
 
 void Player::GainRPM()
 {
+	if (enabled)
+	{
 		if (rpm > MAX_RPM_LOWER)	//3900
 		{
 			rpm = MAX_RPM;
@@ -57,15 +59,18 @@ void Player::GainRPM()
 			rpm += FOURTH_GEAR_RPM_GAIN;
 			break;
 		}
+		}
 	}
 }
 void Player::GainAcc()
 {
+	if (enabled)
+	{
 		if (acc > 0)
 		{
-			glob_moved = true; // gracz poruszyl sie do przodu
+			moved = true; // gracz poruszyl sie do przodu
 		}
-	
+
 
 		if (rpm > MAX_RPM_LOWER)		//3990 bylo jest 3900
 		{
@@ -99,6 +104,7 @@ void Player::GainAcc()
 			break;
 		}
 		}
+	}
 }
 
 void Player::LooseSpeed()
@@ -204,21 +210,30 @@ void Player::GearUp()
 
 }
 
-void Player::CheckFalseStart()	// od momentu wywolania czeka 3 sekundy, a po 3 sekundach sprawdza
+void Player::CheckFalseStart()	// 
 {
-	if (!falsestart_checked)	//raz sprawdzoono falstart, nie sprawdzaj juz wiecej
+	if (!falsestart_checked)	//raz wywolany timer, pozniej rekurencyjne co 100ms az do 3000ms
 	{
 	falsestart_checked = true;
-	glutTimerFunc(3000, &Player::CheckMoved, 0);
+	glutTimerFunc(100, &Player::CheckMoved, 100);
 	}
 }
 
-void Player::CheckMoved(int)
+void Player::CheckMoved(int time)
 {
-		if (glob_moved)		//wszystko na zmiennej globalnej bo ten durny glutitmerfunc nie chce wzi¹æ metody
-		{					//zwiazanej z obiektem, tylko statyczne.
+		if (moved)	
+		{					
 			cout << "FALSTART" << endl;
-			cin >> glob_moved;
+			cin >> moved;
+		}
+
+		if (time <= 3000)
+		{
+			glutTimerFunc(100, &Player::CheckMoved, time+100);
+		}
+		else
+		{
+			falsestart_checked = true;
 		}
 }
 
@@ -248,7 +263,7 @@ float Player::GetBooster()
 }
 bool  Player::GetMoved()
 {
-	return glob_moved;
+	return moved;
 }
 
 void Player::SetSpeed(float s)
@@ -262,4 +277,8 @@ void Player::SetVelocity(float v)
 void Player::SetEnabled()
 {
 	enabled = 1;
+}
+void Player::ClearEnabled()
+{
+	enabled = 0;
 }

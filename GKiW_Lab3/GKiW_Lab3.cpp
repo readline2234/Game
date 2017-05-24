@@ -17,12 +17,10 @@ Player * oponent = new Player(-2.2, -1.1, 1);
 
 using namespace std;
 
-void countdown(int)
+void OponentEnable(int)
 {
 	oponent->SetEnabled();
-	gracz->SetEnabled();
 }
-
 
 int main(int argc, char* argv[])
 {
@@ -71,6 +69,8 @@ int main(int argc, char* argv[])
 
 	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
 	oponent->LoadModel("models\\lp4.obj", "models\\lp4purple.bmp");
+
+	oponent->ClearEnabled();
 
 	glutMainLoop();
 
@@ -200,21 +200,21 @@ void OnTimer(int id) {
 		gracz->LooseBooster();
 		
 		// MIKEMIKEMIKE
-		//glutTimerFunc(3000, countdown, 0);	//odliczanie
+		glutTimerFunc(2000, OponentEnable, 0);	//odliczanie
 
 
 		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
 		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
-		//oponent->SetVelocity(0.5);
-		//oponent->MoveForward();
-		//oponent->GainRPM();
-		//oponent->GainAcc();
-		//if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )
-		//{
-		//	oponent->GearUp();
-		//}
+		oponent->SetVelocity(0.5);
+		oponent->MoveForward();
+		oponent->GainRPM();
+		oponent->GainAcc();
+		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )
+		{
+			oponent->GearUp();
+		}
 
 		oponent->LooseSpeed();
 		oponent->LooseRPM();
