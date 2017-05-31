@@ -84,6 +84,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Image.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GKiW_Lab3.h" />
     <ClInclude Include="Model.h" />
@@ -96,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="GKiW_Lab3.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="stdafx.cpp">

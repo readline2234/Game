@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Model.h"
 #include "Player.h"
+#include "Image.h"
 
 GameObject * start = new GameObject(0, 0, 0);
 GameObject * road1 = new GameObject(0, 0, 0);
@@ -17,6 +18,9 @@ Player * gracz = new Player(2.2, -1.1, 1);
 Player * oponent = new Player(-2.2, -1.1, 1);
 
 GameObject * plane = new GameObject(0, 0, 0);
+
+Image * img = new Image();
+
 GLint teks;
 
 using namespace std;
@@ -105,6 +109,8 @@ int main(int argc, char* argv[])
 
 	Texture * tex = new Texture();
 	teks = tex->loadBMP_custom("models\\planeGameOver.bmp");
+
+	img->LoadImg("models\\planeGameOver.bmp");
 
 	oponent->ClearEnabled();
 
@@ -379,42 +385,44 @@ void OnRender() {
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-	glPushMatrix();
+	//glPushMatrix();
 
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
-	glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
+	//float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	//float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	//float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	//glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
+	//glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
 
-	glFrontFace(GL_CW);
+	//glFrontFace(GL_CW);
 
 
 
-	glBindTexture(GL_TEXTURE_2D, teks);
+	//glBindTexture(GL_TEXTURE_2D, teks);
+	//
+	//glEnable(GL_TEXTURE_2D);
+
+	//glBegin(GL_QUADS);
+	////glColor3f(0.0, 1.0, 0.0);
+	//glTexCoord2f(0, 1);
+	//glVertex2f(50, 50);
+	//glTexCoord2f(0, 0);
+	//glVertex2f(50, 500);
+	//glTexCoord2f(1, 0);
+	//glVertex2f(500, 500);
+	//glTexCoord2f(1, 1);
+	//glVertex2f(500, 50);
+	//glEnd();
+
+	//glDisable(GL_TEXTURE_2D);
+
+	//glPopMatrix();
 	
-	glEnable(GL_TEXTURE_2D);
+	img->Draw();
 
-	glBegin(GL_QUADS);
-	//glColor3f(0.0, 1.0, 0.0);
-	glTexCoord2f(0, 1);
-	glVertex2f(50, 50);
-	glTexCoord2f(0, 0);
-	glVertex2f(50, 500);
-	glTexCoord2f(1, 0);
-	glVertex2f(500, 500);
-	glTexCoord2f(1, 1);
-	glVertex2f(500, 50);
-	glEnd();
-
-	glDisable(GL_TEXTURE_2D);
-
-	glPopMatrix();
-	
 	glDepthMask(GL_TRUE);
 
 	glutSwapBuffers();
