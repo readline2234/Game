@@ -16,6 +16,9 @@ GameObject * light = new GameObject(0, 0, 0);
 Player * gracz = new Player(2.2, -1.1, 1);
 Player * oponent = new Player(-2.2, -1.1, 1);
 
+GameObject * plane = new GameObject(0, 0, 0);
+GLint teks;
+
 using namespace std;
 
 void OponentEnable(int)
@@ -98,12 +101,17 @@ int main(int argc, char* argv[])
 	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
 	oponent->LoadModel("models\\lp4.obj", "models\\lp4purple.bmp");
 
+	plane->LoadModel("models\\plane.obj", "models\\planeGameOver.bmp");
+
+	Texture * tex = new Texture();
+	teks = tex->loadBMP_custom("models\\planeGameOver.bmp");
+
 	oponent->ClearEnabled();
 
 	glutTimerFunc(2200, CountdownYellow, 0);									//22
 	glutTimerFunc(3400, CountdownGreen, 0);										//34
 	gracz->CheckFalseStart();
-	glutTimerFunc(3400, OponentEnable, 0);	//kiedy startuje komputer >34bezp	//34
+	glutTimerFunc(3600, OponentEnable, 0);	//kiedy startuje komputer >34bezp	//34
 
 
 	glutMainLoop();
@@ -238,7 +246,7 @@ void OnTimer(int id) {
 		//glutTimerFunc(3300, OponentEnable, 0);	//kiedy startuje komputer
 
 
-		//cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
+		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
 		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
@@ -289,10 +297,19 @@ void OnTimer(int id) {
 }
 
 void OnRender() {
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//Set up projection matrix
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	//Using gluPerspective. It's pretty easy and looks nice.
+	gluPerspective(60.0f, (float)800 / 600, .01f, 100.0f); 
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
 	//gluLookAt(
 	//	player.pos.x, player.pos.y, player.pos.z,
@@ -350,6 +367,56 @@ void OnRender() {
 	oponent->SetScal(0.5, 0.5, 0.5);
 	oponent->DrawModel();
 
+	glDepthMask(GL_FALSE);
+	glDisable(GL_DEPTH_TEST);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0, 800, 0, 600); //left,right,bottom,top
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+	glPushMatrix();
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
+	glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
+
+	glFrontFace(GL_CW);
+
+
+
+	glBindTexture(GL_TEXTURE_2D, teks);
+	
+	glEnable(GL_TEXTURE_2D);
+
+	glBegin(GL_QUADS);
+	//glColor3f(0.0, 1.0, 0.0);
+	glTexCoord2f(0, 1);
+	glVertex2f(50, 50);
+	glTexCoord2f(0, 0);
+	glVertex2f(50, 500);
+	glTexCoord2f(1, 0);
+	glVertex2f(500, 500);
+	glTexCoord2f(1, 1);
+	glVertex2f(500, 50);
+	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
+
+	glPopMatrix();
+	
+	glDepthMask(GL_TRUE);
+
 	glutSwapBuffers();
 	glFlush();
 	glutPostRedisplay();
@@ -361,4 +428,7 @@ void OnReshape(int width, int height) {
 	glLoadIdentity();
 	glViewport(0, 0, width, height);
 	gluPerspective(60.0f, (float) width / height, .01f, 100.0f);
+
+
+
 }

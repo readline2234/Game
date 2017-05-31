@@ -3,8 +3,9 @@
 
 class Texture {
 private:
-	Texture();
+
 
 public:
+	Texture();
 	static GLuint loadBMP_custom(const char * imagepath);
 };
