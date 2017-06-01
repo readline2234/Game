@@ -1,8 +1,14 @@
 #include "stdafx.h"
 #include "Image.h"
 
+void Image::SetScal(float x, float y, float z)
+{
+	scal->SetXYZ(x, y, z);
+}
+
 void Image::LoadImg(const char * imagepath)
 {
+	scal = new Vec3(1, 1, 1);
 	tex = new Texture();
 	texID = tex->loadBMP_custom(imagepath);
 }
@@ -11,8 +17,9 @@ void Image::Draw()
 {
 	glPushMatrix();
 
-	glScalef(0.5f, 0.1f, 0.5f);	// dokoncz skale	//wez argument gracz->rpm przekaz 
-													//do nowej napisanej funkcji draw()
+	glScalef(scal->GetX(), scal->GetY(), scal->GetZ());	
+	// dokoncz skale	//wez argument gracz->rpm przekaz 
+	// do nowej napisanej funkcji draw()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 

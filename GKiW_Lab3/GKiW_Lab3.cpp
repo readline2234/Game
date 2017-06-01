@@ -19,9 +19,13 @@ Player * oponent = new Player(-2.2, -1.1, 1);
 
 GameObject * plane = new GameObject(0, 0, 0);
 
-Image * img = new Image();
 
 GLint teks;
+
+Image * playerwon = new Image();
+bool playerwin = false;
+Image * computerwon = new Image();
+bool computerwin = false;
 
 using namespace std;
 
@@ -33,14 +37,16 @@ void WhoWin()	//ewentualnie popraw to zeby po zatrzymaniu i pozniej puszczeniu g
 {
 	if (gracz->GetPosZ() > 1988)
 	{
-		cout << "WYGRAL GRACZ" << endl;		
-		cin >> T;
+		playerwin = true;
+		//cout << "WYGRAL GRACZ" << endl;		
+		//cin >> T;
 	}
 
 	if (oponent->GetPosZ() > 1988)
 	{
-		cout << "WYGRAL KOMPUTER" << endl;
-		cin >> T;
+		computerwin = true;
+		//cout << "WYGRAL KOMPUTER" << endl;
+		//cin >> T;
 	}
 
 	return;
@@ -110,7 +116,8 @@ int main(int argc, char* argv[])
 	Texture * tex = new Texture();
 	teks = tex->loadBMP_custom("models\\planeGameOver.bmp");
 
-	img->LoadImg("models\\planeGameOver.bmp");
+	playerwon->LoadImg("models\\playerwon.bmp");
+	computerwon->LoadImg("models\\computerwon.bmp");
 
 	oponent->ClearEnabled();
 
@@ -277,7 +284,7 @@ void OnTimer(int id) {
 		oponent->LooseAcc();
 		oponent->LooseBooster();
 
-
+		//img->SetScal(0.1, gracz->GetRPM() / 4000, 0.5);
 
 
 		WhoWin();
@@ -420,8 +427,17 @@ void OnRender() {
 	//glDisable(GL_TEXTURE_2D);
 
 	//glPopMatrix();
-	
-	img->Draw();
+	if (playerwin)
+	{
+		glDisable(GL_LIGHTING);
+		playerwon->Draw();
+	}
+
+	if (computerwin)
+	{
+		glDisable(GL_LIGHTING);
+		computerwon->Draw();
+	}
 
 	glDepthMask(GL_TRUE);
 
