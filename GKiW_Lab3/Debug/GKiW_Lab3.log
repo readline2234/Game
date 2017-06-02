@@ -4,10 +4,11 @@ g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\player.h(39): warning C4305: 'in
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\player.h(40): warning C4305: 'initializing': truncation from 'double' to 'const float'
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(17): warning C4305: 'argument': truncation from 'double' to 'float'
 g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(18): warning C4305: 'argument': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(263): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(264): warning C4305: '/=': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(443): warning C4305: 'argument': truncation from 'double' to 'float'
-g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(446): warning C4305: 'argument': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(283): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(284): warning C4305: '/=': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(420): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(475): warning C4305: 'argument': truncation from 'double' to 'float'
+g:\dokumenty\! studia\sem 4\gk\! game\gkiw_lab3\gkiw_lab3.cpp(478): warning C4305: 'argument': truncation from 'double' to 'float'
 GKiW_Lab3.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.exe
   GKiW_Lab3.vcxproj -> G:\dokumenty\! studia\Sem 4\gk\! GAME\Debug\GKiW_Lab3.pdb (Full PDB)

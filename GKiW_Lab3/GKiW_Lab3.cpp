@@ -19,7 +19,6 @@ Player * oponent = new Player(-2.2, -1.1, 1);
 
 GameObject * plane = new GameObject(0, 0, 0);
 
-
 GLint teks;
 
 Image * playerwon = new Image();
@@ -31,7 +30,10 @@ Image * rpmbar = new Image();
 Image * rpmscale = new Image();
 Image * falsestartimage = new Image();
 
+GameObject * city = new GameObject(0, 0, 0);
 
+int COMPUTER_GEAR_UP_RPM = 2300;
+int COMPUTER_FIRST_GEAR_UP_RPM = 3000;
 
 using namespace std;
 
@@ -132,7 +134,8 @@ int main(int argc, char* argv[])
 	rpmbar->LoadImg("models\\rpmbar.bmp");
 	rpmscale->LoadImg("models\\rpmscale.bmp");
 	falsestartimage->LoadImg("models\\falsestart.bmp");
-	
+
+	city->LoadModel("models\\plane2.obj", "models\\city.bmp");
 
 	oponent->ClearEnabled();
 
@@ -244,6 +247,21 @@ void OnTimer(int id) {
 			phi += .03f;
 		}
 
+		if (keystate['z']) {
+			COMPUTER_GEAR_UP_RPM = 2300;
+			COMPUTER_FIRST_GEAR_UP_RPM = 3000;
+		}
+
+		if (keystate['x']) {
+			COMPUTER_GEAR_UP_RPM = 2400;
+			COMPUTER_FIRST_GEAR_UP_RPM = 2650;
+		}
+
+		if (keystate['c']) {
+			COMPUTER_GEAR_UP_RPM = 2550;
+			COMPUTER_FIRST_GEAR_UP_RPM = 2500;
+		}
+
 		player.dir.x = cos(phi);
 		player.dir.z = sin(phi);
 
@@ -274,14 +292,14 @@ void OnTimer(int id) {
 		//glutTimerFunc(3300, OponentEnable, 0);	//kiedy startuje komputer
 
 
-		cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
-		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
+		//cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
+		cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
 		oponent->SetVelocity(0.5);
 		oponent->MoveForward();
 
-		if (oponent->GetGear() == 0 && oponent->GetRPM() > 3000)
+		if (oponent->GetGear() == 0 && oponent->GetRPM() > COMPUTER_FIRST_GEAR_UP_RPM)
 		{ }		// na zerowym biegu odpusc obroty jak > 3000 , w przeciwnym przypadku GAZU! //level
 		else
 		{
@@ -289,7 +307,7 @@ void OnTimer(int id) {
 		}
 
 		oponent->GainAcc();
-		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )	//level
+		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > COMPUTER_GEAR_UP_RPM)	//level
 		{
 			oponent->GearUp();
 		}
@@ -392,6 +410,18 @@ void OnRender() {
 
 	oponent->SetScal(0.5, 0.5, 0.5);
 	oponent->DrawModel();
+
+	city->SetRot(180, 90, 0);
+	
+	city->SetScal(25,21,1);
+	for (int i = -30; i < 2500; i=i+50)
+	{
+		glDisable(GL_LIGHTING);
+		city->SetPosXYZ(-55, 0, i);		//-60
+		city->DrawModel();
+		glEnable(GL_LIGHTING);
+	}
+
 
 	glDepthMask(GL_FALSE);
 	glDisable(GL_DEPTH_TEST);
