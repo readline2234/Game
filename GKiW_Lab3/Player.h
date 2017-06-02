@@ -43,6 +43,7 @@ private:
 
 	bool enabled = 1;
 
+
 	float speed = 1;
 	float velocity = 0;
 
@@ -53,6 +54,7 @@ private:
 
 	float shifts[4] = {0};	//ewentualnie dynamicznie dla roznych pojazdow - shifts[GEARS_NUMBER]
 
+	static bool falsestart;
 	static bool moved; // czy gracz poruszyl sie do przodu
 	static bool falsestart_checked; // czy chociaz raz uruchomiono juz spradzenie falstartu
 	
@@ -68,6 +70,7 @@ public:
 	float GetAcc();
 	float GetBooster();
 	bool GetMoved();
+	bool GetFalstart();
 
 
 	void SetSpeed(float s);

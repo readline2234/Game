@@ -2,6 +2,7 @@
 #include "Player.h"
 bool Player::moved = false;
 bool Player::falsestart_checked = false;
+bool Player::falsestart = false;
 
 Player::Player(float x, float y, float z) : GameObject(x,y,z)
 {
@@ -221,7 +222,8 @@ void Player::CheckMoved(int time)
 		if (moved)	
 		{					
 			cout << "FALSTART" << endl;
-			cin >> moved;
+			falsestart = true;
+			//cin >> moved;
 		}
 
 		if (time <= 2900)
@@ -233,6 +235,7 @@ void Player::CheckMoved(int time)
  			falsestart_checked = true;
 		}
 }
+
 
 float Player::GetSpeed()
 {
@@ -261,6 +264,10 @@ float Player::GetBooster()
 bool  Player::GetMoved()
 {
 	return moved;
+}
+bool Player::GetFalstart()
+{
+	return falsestart;
 }
 
 void Player::SetSpeed(float s)

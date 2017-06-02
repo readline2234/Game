@@ -29,6 +29,8 @@ int winner = 0; //1-gracz 2-PC
 Image * computerwon = new Image();
 Image * rpmbar = new Image();
 Image * rpmscale = new Image();
+Image * falsestartimage = new Image();
+
 
 
 using namespace std;
@@ -129,7 +131,8 @@ int main(int argc, char* argv[])
 	computerwon->LoadImg("models\\computerwon.bmp");
 	rpmbar->LoadImg("models\\rpmbar.bmp");
 	rpmscale->LoadImg("models\\rpmscale.bmp");
-
+	falsestartimage->LoadImg("models\\falsestart.bmp");
+	
 
 	oponent->ClearEnabled();
 
@@ -445,6 +448,12 @@ void OnRender() {
 	rpmscale->SetScal(0.05, 1, 1);
 	rpmscale->Draw();
 	glEnable(GL_LIGHTING);
+
+	if (gracz->GetFalstart() == true)
+	{
+		glDisable(GL_LIGHTING);
+		falsestartimage->Draw();
+	}
 
 	if (winner == 1)
 	{
