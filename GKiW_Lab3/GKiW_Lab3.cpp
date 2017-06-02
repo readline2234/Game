@@ -23,9 +23,13 @@ GameObject * plane = new GameObject(0, 0, 0);
 GLint teks;
 
 Image * playerwon = new Image();
-bool playerwin = false;
+//bool playerwin = false;
+//bool computerwin = false;
+int winner = 0; //1-gracz 2-PC
 Image * computerwon = new Image();
-bool computerwin = false;
+Image * rpmbar = new Image();
+Image * rpmscale = new Image();
+
 
 using namespace std;
 
@@ -35,20 +39,25 @@ void OponentEnable(int)
 }
 void WhoWin()	//ewentualnie popraw to zeby po zatrzymaniu i pozniej puszczeniu gry nie wygra³ drugi
 {
-	if (gracz->GetPosZ() > 1988)
+	if (winner == 0)
 	{
-		playerwin = true;
-		//cout << "WYGRAL GRACZ" << endl;		
-		//cin >> T;
-	}
 
-	if (oponent->GetPosZ() > 1988)
-	{
-		computerwin = true;
-		//cout << "WYGRAL KOMPUTER" << endl;
-		//cin >> T;
-	}
+		if (gracz->GetPosZ() > 1988)
+		{
+			winner = 1;
+			//playerwin = true;
+			//cout << "WYGRAL GRACZ" << endl;		
+			//cin >> T;
+		}
 
+		if (oponent->GetPosZ() > 1988)
+		{
+			winner = 2;
+			//computerwin = true;
+			//cout << "WYGRAL KOMPUTER" << endl;
+			//cin >> T;
+		}
+	}
 	return;
 }
 
@@ -118,6 +127,9 @@ int main(int argc, char* argv[])
 
 	playerwon->LoadImg("models\\playerwon.bmp");
 	computerwon->LoadImg("models\\computerwon.bmp");
+	rpmbar->LoadImg("models\\rpmbar.bmp");
+	rpmscale->LoadImg("models\\rpmscale.bmp");
+
 
 	oponent->ClearEnabled();
 
@@ -217,7 +229,7 @@ void OnTimer(int id) {
 		{
 			//gracz->SetEnabled();
 			//oponent->SetEnabled();
-			gracz->Teleport();
+			//gracz->Teleport();
 		}
 
 		// Obrot kamery
@@ -267,14 +279,14 @@ void OnTimer(int id) {
 		oponent->MoveForward();
 
 		if (oponent->GetGear() == 0 && oponent->GetRPM() > 3000)
-		{ }		// na zerowym biegu odpusc obroty jak > 3000 , w przeciwnym przypadku GAZU!
+		{ }		// na zerowym biegu odpusc obroty jak > 3000 , w przeciwnym przypadku GAZU! //level
 		else
 		{
 		oponent->GainRPM();
 		}
 
 		oponent->GainAcc();
-		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )
+		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > 2300 )	//level
 		{
 			oponent->GearUp();
 		}
@@ -285,8 +297,6 @@ void OnTimer(int id) {
 		oponent->LooseBooster();
 
 		//img->SetScal(0.1, gracz->GetRPM() / 4000, 0.5);
-
-
 		WhoWin();
 
 	#pragma endregion
@@ -427,13 +437,22 @@ void OnRender() {
 	//glDisable(GL_TEXTURE_2D);
 
 	//glPopMatrix();
-	if (playerwin)
+
+	glDisable(GL_LIGHTING);
+	rpmbar->SetScal(0.075, gracz->GetRPM() / 3750, 1.0);
+	rpmbar->Draw();
+
+	rpmscale->SetScal(0.05, 1, 1);
+	rpmscale->Draw();
+	glEnable(GL_LIGHTING);
+
+	if (winner == 1)
 	{
 		glDisable(GL_LIGHTING);
 		playerwon->Draw();
 	}
 
-	if (computerwin)
+	if (winner == 2)
 	{
 		glDisable(GL_LIGHTING);
 		computerwon->Draw();
