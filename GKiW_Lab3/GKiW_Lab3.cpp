@@ -5,6 +5,9 @@
 #include "Model.h"
 #include "Player.h"
 #include "Image.h"
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
 
 GameObject * start = new GameObject(0, 0, 0);
 GameObject * road1 = new GameObject(0, 0, 0);
@@ -21,7 +24,7 @@ GameObject * plane = new GameObject(0, 0, 0);
 
 GLint teks;
 
-
+std::vector <Image*> GearImages;
 
 Image * playerwon = new Image();
 //bool playerwin = false;
@@ -149,9 +152,21 @@ int main(int argc, char* argv[])
 	startimage->LoadImg("models\\start.bmp");
 	sterowanieimage->LoadImg("models\\sterowanie.bmp");
 
+	for (int i = 0; i <= 4; i++)
+	{
+		GearImages.push_back(new Image());
+		char imagepath[50];
+
+		strcpy(imagepath, "models\\gears\\");
+		strcat(imagepath, std::to_string(i).c_str());
+		strcat(imagepath, ".bmp");
+
+		GearImages[i]->LoadImg(imagepath);
+	}
+
+	PlaySound(TEXT("12.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+
 	oponent->ClearEnabled();
-
-
 
 	glutMainLoop();
 
@@ -333,6 +348,7 @@ void OnTimer(int id) {
 
 		if (sterowanieb == false && once == true)
 		{
+			PlaySound(TEXT("11s.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 			glutTimerFunc(2200, CountdownYellow, 0);									//22
 			glutTimerFunc(3400, CountdownGreen, 0);										//34
 			gracz->CheckFalseStart();
@@ -467,6 +483,8 @@ void OnRender() {
 	rpmscale->SetScal(0.05, 1, 1);
 	rpmscale->Draw();
 
+	GearImages[gracz->GetGear()]->SetScal(0.10, 0.15, 0.1);
+	GearImages[gracz->GetGear()]->Draw();
 
 	if (sterowanieb)
 	{
