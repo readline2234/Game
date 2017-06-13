@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 
 	void OnKeyUp(unsigned char key, int x, int y) {
 
-		if (key == 'i')					// Nie moze byc nizej
+		if (key == 32)					// Nie moze byc nizej
 			gracz->GearUp();
 
 		if (key == 'f')					
@@ -207,7 +207,7 @@ void OnTimer(int id) {
 	
 	T = glutGet(GLUT_ELAPSED_TIME); // Ile milisekund uplynelo od momentu uruchomienia programu?
 
-		if (keystate['o']) {
+		if (keystate['w']) {
 			gracz->SetVelocity(0.5);
 			gracz->GainRPM();
 			gracz->GainAcc();
