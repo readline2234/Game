@@ -21,6 +21,8 @@ GameObject * plane = new GameObject(0, 0, 0);
 
 GLint teks;
 
+
+
 Image * playerwon = new Image();
 //bool playerwin = false;
 //bool computerwin = false;
@@ -34,6 +36,13 @@ GameObject * city = new GameObject(0, 0, 0);
 
 int COMPUTER_GEAR_UP_RPM = 2300;
 int COMPUTER_FIRST_GEAR_UP_RPM = 3000;
+
+bool startb = true;
+bool sterowanieb = true;
+bool once = true;
+
+Image * startimage = new Image();
+Image * sterowanieimage = new Image();
 
 using namespace std;
 
@@ -137,12 +146,11 @@ int main(int argc, char* argv[])
 
 	city->LoadModel("models\\plane2.obj", "models\\city.bmp");
 
+	startimage->LoadImg("models\\start.bmp");
+	sterowanieimage->LoadImg("models\\sterowanie.bmp");
+
 	oponent->ClearEnabled();
 
-	glutTimerFunc(2200, CountdownYellow, 0);									//22
-	glutTimerFunc(3400, CountdownGreen, 0);										//34
-	gracz->CheckFalseStart();
-	glutTimerFunc(3600, OponentEnable, 0);	//kiedy startuje komputer >34bezp	//34
 
 
 	glutMainLoop();
@@ -182,6 +190,12 @@ int main(int argc, char* argv[])
 
 		if (key == 'i')					// Nie moze byc nizej
 			gracz->GearUp();
+
+		if (key == 'f')					
+			startb = false;
+
+		if (key == 'g')					
+			sterowanieb = false;
 
 		keystate[key] = false;
 	}
@@ -317,6 +331,17 @@ void OnTimer(int id) {
 		oponent->LooseAcc();
 		oponent->LooseBooster();
 
+		if (sterowanieb == false && once == true)
+		{
+			glutTimerFunc(2200, CountdownYellow, 0);									//22
+			glutTimerFunc(3400, CountdownGreen, 0);										//34
+			gracz->CheckFalseStart();
+			glutTimerFunc(3600, OponentEnable, 0);	//kiedy startuje komputer >34bezp	//34
+
+			once = false;
+		}
+
+
 		//img->SetScal(0.1, gracz->GetRPM() / 4000, 0.5);
 		WhoWin();
 
@@ -432,51 +457,27 @@ void OnRender() {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-	//glPushMatrix();
-
-	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-	//float m0_amb[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	//float m0_dif[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	//float m0_spe[] = { 0.0f, 0.0f, 0.0f, 1.0f };
-	//glMaterialfv(GL_FRONT, GL_AMBIENT, m0_amb);
-	//glMaterialfv(GL_FRONT, GL_DIFFUSE, m0_dif);
-	//glMaterialfv(GL_FRONT, GL_SPECULAR, m0_spe);
-	//glMaterialf(GL_FRONT, GL_SHININESS, 20.0f);
-
-	//glFrontFace(GL_CW);
-
-
-
-	//glBindTexture(GL_TEXTURE_2D, teks);
-	//
-	//glEnable(GL_TEXTURE_2D);
-
-	//glBegin(GL_QUADS);
-	////glColor3f(0.0, 1.0, 0.0);
-	//glTexCoord2f(0, 1);
-	//glVertex2f(50, 50);
-	//glTexCoord2f(0, 0);
-	//glVertex2f(50, 500);
-	//glTexCoord2f(1, 0);
-	//glVertex2f(500, 500);
-	//glTexCoord2f(1, 1);
-	//glVertex2f(500, 50);
-	//glEnd();
-
-	//glDisable(GL_TEXTURE_2D);
-
-	//glPopMatrix();
 
 	glDisable(GL_LIGHTING);
+
+
 	rpmbar->SetScal(0.075, gracz->GetRPM() / 3750, 1.0);
 	rpmbar->Draw();
 
 	rpmscale->SetScal(0.05, 1, 1);
 	rpmscale->Draw();
+
+
+	if (sterowanieb)
+	{
+		sterowanieimage->Draw();
+	}
+
+	if (startb)
+	{
+		startimage->Draw();
+	}
+
 	glEnable(GL_LIGHTING);
 
 	if (gracz->GetFalstart() == true)
