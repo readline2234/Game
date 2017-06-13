@@ -27,8 +27,6 @@ GLint teks;
 std::vector <Image*> GearImages;
 
 Image * playerwon = new Image();
-//bool playerwin = false;
-//bool computerwin = false;
 int winner = 0; //1-gracz 2-PC
 Image * computerwon = new Image();
 Image * rpmbar = new Image();
@@ -53,6 +51,7 @@ void OponentEnable(int)
 {
 	oponent->SetEnabled();
 }
+
 void WhoWin()	//ewentualnie popraw to zeby po zatrzymaniu i pozniej puszczeniu gry nie wygra³ drugi
 {
 	if (winner == 0)
@@ -115,40 +114,21 @@ int main(int argc, char* argv[])
 	glShadeModel(GL_SMOOTH); // Wybor techniki cieniowania
 	glEnable(GL_LIGHT0); // Wlaczenie 0-go zrodla swiatla
 
-	player.pos.x = 0.0f;
-	player.pos.y = 0.0f;
-	player.pos.z = 8.0f;
-
-	player.dir.x = 0.0f;
-	player.dir.y = 0.0f;
-	player.dir.z = -1.0f;
-
-	player.speed = 1.50f;
-
 	start->LoadModel("models\\start.obj", "models\\start2.bmp");
 	road1->LoadModel("models\\road.obj", "models\\road3.bmp");
 	road2->LoadModel("models\\road.obj", "models\\road3.bmp");
 	finish->LoadModel("models\\finish.obj", "models\\finish3.bmp");
 	road3->LoadModel("models\\road.obj", "models\\road3.bmp");
-
 	light->LoadModel("models\\light.obj", "models\\light3.bmp");
-
 	gracz->LoadModel("models\\lp4.obj", "models\\lp4.bmp");
 	oponent->LoadModel("models\\lp4.obj", "models\\lp4purple.bmp");
-
 	plane->LoadModel("models\\plane.obj", "models\\planeGameOver.bmp");
-
-	Texture * tex = new Texture();
-	teks = tex->loadBMP_custom("models\\planeGameOver.bmp");
-
 	playerwon->LoadImg("models\\playerwon.bmp");
 	computerwon->LoadImg("models\\computerwon.bmp");
 	rpmbar->LoadImg("models\\rpmbar.bmp");
 	rpmscale->LoadImg("models\\rpmscale.bmp");
 	falsestartimage->LoadImg("models\\falsestart.bmp");
-
 	city->LoadModel("models\\plane2.obj", "models\\city.bmp");
-
 	startimage->LoadImg("models\\start.bmp");
 	sterowanieimage->LoadImg("models\\sterowanie.bmp");
 
@@ -227,53 +207,14 @@ void OnTimer(int id) {
 	
 	T = glutGet(GLUT_ELAPSED_TIME); // Ile milisekund uplynelo od momentu uruchomienia programu?
 
-	#pragma region Ruch kamery
-
-		// Zmiana predkosci gracza jesli wcisniete W/S/A/D
-		if (keystate['w']) {
-			player.velM = player.speed;
-		}
-		if (keystate['s']) {
-			player.velM = -player.speed;
-		}
-		if (keystate['a']) {
-			player.velS = -player.speed;
-		}
-		if (keystate['d']) {
-			player.velS = player.speed;
-		}
-
 		if (keystate['o']) {
-			//gracz->SetVelocity = gracz->GetSpeed();
 			gracz->SetVelocity(0.5);
 			gracz->GainRPM();
 			gracz->GainAcc();
-			//cout << "v: " << gracz->GetVelocity() << endl;
 		}
 
 		if (keystate['l']) {
 			cout << gracz->GetPosX() << "\t " << gracz->GetPosY() << "\t " << gracz->GetPosZ() << endl;
-		}
-
-		if (!keystate['i']) 
-		{
-			// bieg w gorê - gracz->GearUp(), definicja wyzej w KeyUp
-		}
-
-		if (keystate['u'])
-		{
-			//gracz->SetEnabled();
-			//oponent->SetEnabled();
-			//gracz->Teleport();
-		}
-
-		// Obrot kamery
-		float phi = atan2(player.dir.z, player.dir.x);
-		if (keystate['q']) {
-			phi -= .03f;
-		}
-		if (keystate['e']) {
-			phi += .03f;
 		}
 
 		if (keystate['z']) {
@@ -291,38 +232,15 @@ void OnTimer(int id) {
 			COMPUTER_FIRST_GEAR_UP_RPM = 2500;
 		}
 
-		player.dir.x = cos(phi);
-		player.dir.z = sin(phi);
-
-		// Znalezienie kierunku prostopadlego
-		vec3 per;
-		per.x = -player.dir.z;
-		per.z = player.dir.x;
-
-		// Chodzenie przod/tyl
-		player.pos.x += player.dir.x * player.velM * .1f;
-		player.pos.y += player.dir.y * player.velM * .1f;
-		player.pos.z += player.dir.z * player.velM * .1f;
 		gracz->MoveForward();
-		// Chodzenie na boki
-		player.pos.x += per.x * player.velS * .1f;
-		player.pos.z += per.z * player.velS * .1f;
-		
-		// Bezwladnosc - w kazdym cyklu maleje predkosc gracza
-		player.velM /= 1.2;
-		player.velS /= 1.2;
 
 		gracz->LooseSpeed();
 		gracz->LooseRPM();
 		gracz->LooseAcc();
 		gracz->LooseBooster();
 		
-		// MIKEMIKEMIKE
-		//glutTimerFunc(3300, OponentEnable, 0);	//kiedy startuje komputer
-
-
 		//cout << "rpm: " << gracz->GetRPM() << "\tg: " << gracz->GetGear() << "\t acc " << gracz->GetAcc() << "\t b " << gracz->GetBooster() << "\t m " << gracz->GetMoved() << endl;
-		cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
+		//cout << "rpm: " << oponent->GetRPM() << "\tg: " << oponent->GetGear() << "\t acc " << oponent->GetAcc() << "\t b " << oponent->GetBooster() << endl;
 
 		//oponent
 		oponent->SetVelocity(0.5);
@@ -332,11 +250,12 @@ void OnTimer(int id) {
 		{ }		// na zerowym biegu odpusc obroty jak > 3000 , w przeciwnym przypadku GAZU! //level
 		else
 		{
-		oponent->GainRPM();
+			oponent->GainRPM();
 		}
 
 		oponent->GainAcc();
-		if (/*oponent->GetGear() == 1 &&*/ oponent->GetRPM() > COMPUTER_GEAR_UP_RPM)	//level
+
+		if (oponent->GetRPM() > COMPUTER_GEAR_UP_RPM)	//level
 		{
 			oponent->GearUp();
 		}
@@ -356,29 +275,7 @@ void OnTimer(int id) {
 
 			once = false;
 		}
-
-
-		//img->SetScal(0.1, gracz->GetRPM() / 4000, 0.5);
 		WhoWin();
-
-	#pragma endregion
-
-	#pragma region Ruch swiatla
-
-		if (keystate_special[GLUT_KEY_LEFT]) {
-			LightPos.x -= .05f;
-		}
-		if (keystate_special[GLUT_KEY_RIGHT]) {
-			LightPos.x += .05f;
-		}
-		if (keystate_special[GLUT_KEY_UP]) {
-			LightPos.y += .05f;
-		}
-		if (keystate_special[GLUT_KEY_DOWN]) {
-			LightPos.y -= .05f;
-		}
-
-	#pragma endregion
 }
 
 void OnRender() {
@@ -394,13 +291,6 @@ void OnRender() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-	//gluLookAt(
-	//	player.pos.x, player.pos.y, player.pos.z,
-	//	player.pos.x + player.dir.x, player.pos.y + player.dir.y, player.pos.z + player.dir.z,
-	//	0.0f, 1.0f, 0.0f
-	//);
 
 	gluLookAt(
 		9.0f, 4.0f, gracz->GetPosZ()-4,//-6.0f,
@@ -424,10 +314,6 @@ void OnRender() {
 	start->SetPosXYZ(0, -1, 0);
 	start->SetScal(0.5, 0.5, 0.5);
 	start->DrawModel();
-
-	//road1->SetPosXYZ(0, -1, 19.5);
-	//road1->SetScal(0.5, 0.5, 0.5);
-	//road1->DrawModel();
 
 	road2->SetPosXYZ(0, -1, 487);
 	road2->SetScal(0.5, 0.5, 50);
@@ -458,11 +344,12 @@ void OnRender() {
 	for (int i = -30; i < 2500; i=i+50)
 	{
 		glDisable(GL_LIGHTING);
-		city->SetPosXYZ(-55, 0, i);		//-60
+		city->SetPosXYZ(-55, 0, i);	
 		city->DrawModel();
 		glEnable(GL_LIGHTING);
 	}
 
+	/////////2D SECTION /////////
 
 	glDepthMask(GL_FALSE);
 	glDisable(GL_DEPTH_TEST);
@@ -529,7 +416,4 @@ void OnReshape(int width, int height) {
 	glLoadIdentity();
 	glViewport(0, 0, width, height);
 	gluPerspective(60.0f, (float) width / height, .01f, 100.0f);
-
-
-
 }
